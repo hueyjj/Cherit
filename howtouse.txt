@@ -1,0 +1,8 @@
+copy all files except for trash like node_modules into new project directory
+
+npm install     
+npm run dev     # or someway to start webpack, which bundles our app and also auto updates for electron
+npm start       # or someway to start electron in the main directory (electron .)
+
+yarn            # use before yarn dist to load and link dependencies
+yarn dist       # to build the distribution of the application

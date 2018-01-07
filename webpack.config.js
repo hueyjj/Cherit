@@ -1,26 +1,21 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-
     watch: true,
-
     target: 'electron',
-
     entry: './app/src/entry.js',
-
     output: {
         path: __dirname + '/app/build',
         publicPath: 'build/',
         filename: 'bundle.js'
     },
-
     module: {
         rules: [
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['react']
+                    presets: ['react', 'stage-2']
                 }
             },
             {
@@ -45,7 +40,7 @@ module.exports = {
             disable: false,
             allChunks: true
         }
-    )
-]
+        )
+    ]
 
 }
