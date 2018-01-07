@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import counter from '../reducers/counter';
+import player from '../reducers/player';
+import library from "../reducers/library";
 
 const rootReducer = combineReducers({
-  counter, 
+  player,
+  library,
 });
 
 export default rootReducer

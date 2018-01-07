@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
+import '../styles/Root.css';
+
+import TrackListContainer from '../containers/TrackListContainer';
+import LibraryControllerContainer from '../containers/LibraryControllerContainer';
+
+
 class Root extends Component {
   render() {
-    const { incCounter } = this.props;
-    const { counter } = this.props.counter;
-
     return (
       <div className="root">
-        <div>{counter}</div>
-        <button onClick={incCounter}>+</button>
+        <LibraryControllerContainer />
+        <TrackListContainer />
       </div>
     );
   }
