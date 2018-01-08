@@ -2,14 +2,14 @@ import {
   ERROR_LOAD_LIBRARY,
   ERROR_LOADING_FILES,
   ERROR_BUILDING_FILE_METADATA,
+  MUSIC_FORMAT,
 } from "../constants/LibraryConstants";
 
+import { remote } from "electron";
+const { dialog } = remote;
 import mm from 'musicmetadata';
-
-const remote = window.require("electron").remote // require vs. window.require https://github.com/electron/electron/issues/7300#issuecomment-285885725
-const { dialog } = remote
-const fs = remote.require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from "path";
 
 export const getDirectories = () => {
   return new Promise((resolve, reject) => {
@@ -41,20 +41,20 @@ export const getFiles = (dirs) => {
     });
 };
 
-export const buildTrackData = (filePath, file) => {
-  let fileMetaData = {};
-  let readableStream = fs.createReadStream(filePath);
-  let parser = mm(readableStream, function (err, metadata) {
-    if (err) throw err;
+export const buildTrackData = (filePath) => {
+  return new Promise((resolve, reject) => {
+    let readableStream = fs.createReadStream(filePath);
+    let parser = mm(readableStream, function (err, metadata) {
+      readableStream.close();
+      if (err) reject(err);
 
-    const {
-      artist, album, albumartist,
-      title, year, track,
-      disk, genre, picture, duration
-    } = metadata;
+      const {
+        artist, album, albumartist,
+        title, year, track,
+        disk, genre, picture, duration
+      } = metadata;
 
-    fileMetaData = {
-      file: {
+      resolve({
         path: filePath,
         artist: artist,
         album: album,
@@ -66,35 +66,40 @@ export const buildTrackData = (filePath, file) => {
         genre: genre,
         picture: picture,
         duration: duration,
-      }
-    }
-    readableStream.close();
-  });
-  return fileMetaData;
+      });
+    });
+  })
+    .catch((reason) => {
+      // console.warn("No music meta data found");
+      // console.warn(`buildTrackData: file=${file} filePath=${filePath} ` + reason);
+    });
 };
 
 export const buildTrackList = (dirsFiles) => {
-  return new Promise((resolve, reject) => {
-    let tracklist = {};
+  return new Promise(async (resolve, reject) => {
+    let trackList = [];
 
     for (let dir in dirsFiles) {
-      dirsFiles[dir].forEach((file) => {
-        // let filePath = "C\:\\Users\\JJ\\github\\project-white\\music\\music1.m4a";
-        // let readableStream = fs.createReadStream(filePath);
-        // var parser = mm(readableStream, function (err, metadata) {
-        //   if (err) throw err;
-        //   readableStream.close();
-        // });
-        // console.log(filePath);
-        // const track = buildTrackData(filePath, file);
-        // tracklist = {
-        //   ...tracklist,
-        //   track,
-        // }
-        //console.log(track);
-      });
+      await Promise.all(dirsFiles[dir].map(async (fileName) => {
+        let filePath = path.join(dir, fileName),
+          title = path.parse(filePath).name,
+          fileExt = path.extname(filePath);
+
+        if (MUSIC_FORMAT.lastIndexOf(fileExt) === -1)
+          return;
+
+        const track = await buildTrackData(filePath);
+
+        if (track && (track.path.length == 0 || track.title.length == 0)) {
+          track["path"] = filePath;
+          track["title"] = title;
+        }
+
+        trackList.push(track ? track : { path: filePath, title: title });
+      }));
     }
-    tracklist ? resolve(tracklist) : reject(ERROR_BUILDING_FILE_METADATA);
+    //console.log(trackList);
+    trackList.length > 0 ? resolve(trackList) : reject(ERROR_BUILDING_FILE_METADATA);
   })
     .catch((reason) => {
       console.warn("buildTrackList: " + reason);

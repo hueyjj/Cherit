@@ -11,9 +11,9 @@ const TrackListContainer = (props) => {
 
 const mapStateToProps = (state) => { 
   const { library } = state;
-  const { tracklist } = library;
+  const { trackList } = library;
   return {
-    tracklist,
+    trackList,
   };
 };
 

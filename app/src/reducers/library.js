@@ -6,7 +6,7 @@ const initialState = {
   fetched: false,
   dirs: [],
   dirsFiles: [],
-  tracklist: [],
+  trackList: [],
 };
 
 const library = (state = initialState, action) => {
@@ -31,11 +31,18 @@ const library = (state = initialState, action) => {
         tracklist: [...state.tracklist, action.payload],
       };
     }
-    
+
     case types.LIBRARY_CHANGE_TRACKLIST: {
       return {
         ...state,
         tracklist: action.payload,
+      };
+    }
+
+    case types.LIBRARY_SET_TRACKLIST: {
+      return {
+        ...state,
+        trackList: action.payload,
       };
     }
 

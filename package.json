@@ -1,7 +1,7 @@
 {
-  "name": "electron-react-webpack-redux-template",
+  "name": "project-blue",
   "version": "1.0.0",
-  "description": "boiler plate code",
+  "description": "music app",
   "main": "main.js",
   "scripts": {
     "start": "set NODE_ENV=prod&&electron .",
@@ -13,9 +13,9 @@
     "package": "./node_modules/.bin/build --prepackaged .",
     "postinstall": "electron-builder install-app-deps"
   },
-  "author": "name here",
+  "author": "Jasper Jeng",
   "build": {
-    "appId": "boiler-plate-app",
+    "appId": "project-blue",
     "electronVersion": "1.7.9",
     "win": {
       "target": "portable",

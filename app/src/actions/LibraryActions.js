@@ -24,9 +24,14 @@ export const addTrackToLibrary = (track) => ({
   payload: track,
 });
 
-export const changeToTrackList = (tracklist) => ({
+export const changeToTrackList = (trackList) => ({
   type: types.LIBRARY_CHANGE_TRACKLIST,
-  payload: tracklist,
+  payload: trackList,
+})
+
+export const setLibraryTrackList = (trackList) => ({
+  type: types.LIBRARY_SET_TRACKLIST,
+  payload: trackList,
 })
 
 export const loadLibrary = () => async (dispatch, getState) => {
@@ -34,7 +39,8 @@ export const loadLibrary = () => async (dispatch, getState) => {
   dispatch(setLibraryDirs(dirs));
   const dirsFiles = await utils.getFiles(dirs); // { dir: [...files], ... }
   dispatch(setLibraryDirsFiles(dirsFiles));
-  const tracklist = await utils.buildTrackList(dirsFiles);
+  const trackList = await utils.buildTrackList(dirsFiles);
+  dispatch(setLibraryTrackList(trackList));
 };
 
 // export const loadLibrary = () => async (dispatch, getState) => {

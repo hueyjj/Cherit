@@ -9,10 +9,11 @@ class TrackList extends Component {
   }
 
   createTrackList() {
-    const { tracklist } = this.props;
-    return tracklist.map((track, i) => {
+    const { trackList } = this.props;
+    return trackList.map((track, i) => {
+      console.log(track);
       return (
-        <li key={`${track.name}-${i}`}>{track.name}</li>
+        <li key={`${track.title}-${i}`}>{track.title}</li>
       );
     });
   }
