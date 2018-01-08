@@ -11,10 +11,14 @@ class TrackList extends Component {
   }
 
   createTrackList() {
-    const { trackList } = this.props;
+    const { trackList, onTrackClick } = this.props;
     return trackList.map((track, i) => {
       return (
-        <Track track={track} key={`${track.title}-${i}`} />
+        <Track
+          key={`${track.title}-${i}`}
+          track={track}
+          onTrackClick={onTrackClick}
+        />
       );
     });
   }

@@ -1,4 +1,4 @@
-import * as mode from "../constants/PlayerConstants";
+import * as types from "../constants/PlayerConstants";
 
 const initialState = {
 }

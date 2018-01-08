@@ -1,10 +1,12 @@
+import * as types from "../constants/TrackConstants";
+
 const initialState = {
-  onTrackClick: false,
+  
 };
 
 const track = (state = initialState, action) => {
   switch (action.type) {
-    case "TRACK_CLICKED": {
+    case "": {
       return {
         ...state,
       };
@@ -13,3 +15,5 @@ const track = (state = initialState, action) => {
       return state;
   }
 };
+
+export default track;
