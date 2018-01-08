@@ -9,8 +9,8 @@ class Track extends Component {
   }
 
   onClick() {
-    const { track, onTrackClick } = this.props;
-    onTrackClick(track);
+    const { index, track, onTrackClick } = this.props;
+    onTrackClick(index);
   }
 
   render() {
