@@ -15,10 +15,9 @@ export const getDirectories = () => {
   return new Promise((resolve, reject) => {
     dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections'],
-    },
-      (dirs) => {
-        dirs ? resolve(dirs) : reject(ERROR_LOAD_LIBRARY);
-      });
+    }, (dirs) => {
+      dirs ? resolve(dirs) : reject(ERROR_LOAD_LIBRARY);
+    });
   })
     .catch((reason) => {
       console.warn("getDirectories: " + reason);
@@ -98,40 +97,9 @@ export const buildTrackList = (dirsFiles) => {
         trackList.push(track ? track : { path: filePath, title: title });
       }));
     }
-    //console.log(trackList);
     trackList.length > 0 ? resolve(trackList) : reject(ERROR_BUILDING_FILE_METADATA);
   })
     .catch((reason) => {
       console.warn("buildTrackList: " + reason);
     });
 };
-
-
-// export const getDirectories = () => {
-//   return new Promise((resolve, reject) => {
-//     dialog.showOpenDialog({
-//       properties: ['openDirectory', 'multiSelections'],
-//     }, (dirPaths) => {
-//       if (dirPaths)
-//         resolve(dirPaths);
-//       else
-//         reject(ERROR_LOAD_LIBRARY);
-//     });
-//   });
-// };
-
-// export const getFilesFromDirectories = (dirs) => {
-//   return new Promise((resolve, reject) => {
-//     let pathAndFiles = {};
-//     dirs.forEach((dir) => {
-//       ;
-//       pathAndFiles = {
-//         ...pathAndFiles,
-//         [dir]: fs.readdirSync(dir),
-//       };
-//     });
-//     if (pathAndFiles) resolve(pathAndFiles);
-//     else reject(ERROR_LOADING_FILES);
-
-//   });
-// };
