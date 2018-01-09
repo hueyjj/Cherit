@@ -1,7 +1,9 @@
 import * as types from "../constants/TrackConstants";
 
 const initialState = {
-  trackIndex: -1,
+  audio: null,
+  volume: 0.1,
+  trackIndex: 0,
 };
 
 const track = (state = initialState, action) => {
@@ -10,6 +12,20 @@ const track = (state = initialState, action) => {
       return {
         ...state,
         trackIndex: action.payload,
+      };
+    }
+
+    case types.TRACK_SET_AUDIO: {
+      return {
+        ...state,
+        audio: action.payload,
+      };
+    }
+
+    case types.TRACK_SET_NULL: {
+      return {
+        ...state,
+        audio: null,
       };
     }
     default:
