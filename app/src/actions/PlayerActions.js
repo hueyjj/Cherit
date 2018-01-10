@@ -1,42 +1,46 @@
 import * as utils from "../utils/utils"
 import * as types from "../constants/PlayerConstants";
 
-import { setTrackAudio, unsetTrackAudio } from "../actions/TrackActions";
+import {
+  removeTrackAudio,
+  setNewTrackAudio,
+} from "../actions/TrackActions";
 
 export const play = () => async (dispatch, getState) => {
   const { track, library } = getState();
-  const { trackIndex } = track;
+  const { index } = track;
   const { trackList } = library;
 
+  if (trackList.length <= 0) return;
+
   let audio = track.audio;
-  if (!audio) {
-    audio = new Audio(); // New track
-    audio.src = trackList[trackIndex].path;
-    audio.volume = track.volume;
-    audio.index = trackIndex;
-    audio.load();
-    dispatch(setTrackAudio(audio));
-    audio.play();
+  if (!audio || index != audio.index) { // New track or switch track
+    dispatch(removeTrackAudio());
+
+    let src = trackList[index].path,
+      volume = track.volume,
+      newIndex = index;
+
+    dispatch(setNewTrackAudio(src, volume, newIndex));
+
+    audio = getState().track.audio;
+    if (audio) {
+      audio.load();
+      audio.play();
+    }
   }
   else {
-    if (trackIndex != audio.index) { // Switch tracks
-      audio.src = trackList[trackIndex].path
-      audio.index = trackIndex;
-    }
-    audio.load(); // Continue/Start old/new track
     audio.play();
   }
-
-  console.log("Current audio element");
-  console.log(audio);
 };
 
 export const pause = () => async (dispatch, getState) => {
   const { track } = getState();
-  track.audio.pause();
+  if (track.audio)
+    track.audio.pause();
 }
 
 export const stop = () => async (dispatch, getState) => {
-  dispatch(unsetTrackAudio());
+  dispatch(removeTrackAudio());
 };
 

@@ -5,6 +5,7 @@ import '../styles/Root.css';
 import TrackListContainer from '../containers/TrackListContainer';
 import LibraryControllerContainer from '../containers/LibraryControllerContainer';
 import PlayerContainer from '../containers/PlayerContainer';
+import TrackImageContainer from '../containers/TrackImageContainer';
 
 class Root extends Component {
   render() {
@@ -12,6 +13,7 @@ class Root extends Component {
       <div className="root">
         <LibraryControllerContainer />
         <PlayerContainer />
+        <TrackImageContainer />
         <TrackListContainer />
       </div>
     );

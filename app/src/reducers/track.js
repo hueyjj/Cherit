@@ -1,33 +1,53 @@
 import * as types from "../constants/TrackConstants";
+import { base64ArrayBuffer } from "../utils/utils.github.js";
 
 const initialState = {
+  track: null,
   audio: null,
   volume: 0.1,
-  trackIndex: 0,
+  index: 0,
+  image: null,
 };
 
 const track = (state = initialState, action) => {
   switch (action.type) {
     case types.TRACK_SET: {
+      let image = null;
+      if (action.payload.track && action.payload.track.picture.length > 0) {
+        let pic = action.payload.track.picture;
+        image = "data:image/" + pic[0].format + ";base64,"
+          + base64ArrayBuffer(pic[0].data);
+      }
       return {
         ...state,
-        trackIndex: action.payload,
+        track: action.payload.track,
+        index: action.payload.index,
+        image: image,
       };
     }
 
-    case types.TRACK_SET_AUDIO: {
+    case types.TRACK_SET_NEW_AUDIO: {
+      let audio = new Audio();
+      audio.src = action.payload.src;
+      audio.volume = action.payload.volume;
+      audio.index = action.payload.index;
       return {
         ...state,
-        audio: action.payload,
+        audio: audio,
       };
     }
 
-    case types.TRACK_SET_NULL: {
+    case types.TRACK_REMOVE_AUDIO: {
+      if (state.audio) {
+        state.audio.src = "";
+        state.audio.load();
+      }
       return {
         ...state,
         audio: null,
       };
     }
+
     default:
       return state;
   }

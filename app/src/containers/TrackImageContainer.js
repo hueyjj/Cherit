@@ -1,27 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import TrackList from '../components/TrackList';
-import { onTrackClick } from "../actions/TrackActions";
+import TrackImage from '../components/TrackImage';
 
 const TrackListContainer = (props) => {
   return (
-    <TrackList {...props} />
+    <TrackImage {...props} />
   );
 };
 
 const mapStateToProps = (state) => {
-  const { library, track } = state;
-  const { trackList } = library;
+  const { track } = state;
 
   return {
     track,
-    trackList,
   };
 };
 
 const mapDispatchToProps = {
-  onTrackClick,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackListContainer);

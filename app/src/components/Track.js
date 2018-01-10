@@ -9,15 +9,15 @@ class Track extends Component {
   }
 
   onClick() {
-    const { index, track, onTrackClick } = this.props;
-    onTrackClick(index);
+    const { trackInfo, index, onTrackClick } = this.props;
+    onTrackClick(trackInfo, index);
   }
 
   render() {
-    const { track } = this.props;
+    const { trackInfo } = this.props;
     return (
       <div className="track" onClick={this.onClick}>
-        <li>{track.title}</li>
+        <li>{trackInfo.title}</li>
       </div>
     );
   }
