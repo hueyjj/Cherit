@@ -1,0 +1,16 @@
+.track-container {
+  cursor: pointer;
+  margin: 0;
+  list-style: none;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.track-container:hover { 
+  background-color: lightblue;
+}
+
+.track {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

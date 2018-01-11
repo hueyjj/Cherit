@@ -4,6 +4,7 @@ import * as types from "../constants/PlayerConstants";
 import {
   removeTrackAudio,
   setNewTrackAudio,
+  shuffleTrackQueue,
 } from "../actions/TrackActions";
 
 export const play = () => async (dispatch, getState) => {
@@ -44,3 +45,10 @@ export const stop = () => async (dispatch, getState) => {
   dispatch(removeTrackAudio());
 };
 
+export const loop = () => async (dispatch, getState) => {
+
+};
+
+export const shuffle = () => async (dispatch, getState) => {
+  dispatch(shuffleTrackQueue());
+};

@@ -1,4 +1,5 @@
 import * as types from "../constants/TrackConstants";
+import { randomize } from "../utils/utils";
 import { base64ArrayBuffer } from "../utils/utils.github.js";
 
 const initialState = {
@@ -7,6 +8,9 @@ const initialState = {
   volume: 0.1,
   index: 0,
   image: null,
+
+  looop: false,
+  queue: [],
 };
 
 const track = (state = initialState, action) => {
@@ -24,6 +28,20 @@ const track = (state = initialState, action) => {
         index: action.payload.index,
         image: image,
       };
+    }
+
+    case types.TRACK_SET_QUEUE: {
+      return {
+        ...state,
+        queue: action.payload,
+      };
+    }
+
+    case types.TRACK_SHUFFLE_QUEUE: {
+      return {
+        ...state,
+        queue: randomize(state.queue),
+      }
     }
 
     case types.TRACK_SET_NEW_AUDIO: {

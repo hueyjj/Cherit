@@ -15,8 +15,8 @@ class TrackImage extends Component {
     const { track } = this.props;
     const { image } = track;
     return (
-      <div className="track-image">
-        <img src={image}></img>
+      <div className="track-image-container">
+        <img className="track-image" src={image}></img>
       </div>
     );
   }

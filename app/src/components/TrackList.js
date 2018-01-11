@@ -11,23 +11,26 @@ class TrackList extends Component {
   }
 
   createTrackList() {
-    const { trackList, onTrackClick } = this.props;
-    return trackList.map((trackInfo, index) => {
-      return (
-        <Track
-          key={`${trackInfo.title}-${index}`}
-          index={index}
-          trackInfo={trackInfo}
-          onTrackClick={onTrackClick}
-        />
-      );
-    });
+    const { trackList, setTrack, play } = this.props;
+    return trackList
+      ? trackList.map((trackInfo, index) => {
+        return (
+          <Track
+            key={`${trackInfo.title}-${index}`}
+            index={index}
+            trackInfo={trackInfo}
+            setTrack={setTrack}
+            play={play}
+          />
+        );
+      })
+      : "";
   }
 
   render() {
     return (
-      <div className="track-list">
-        <ul>
+      <div className="track-list-container">
+        <ul className="track-list">
           {this.createTrackList()}
         </ul>
       </div>

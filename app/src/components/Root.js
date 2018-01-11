@@ -12,9 +12,13 @@ class Root extends Component {
     return (
       <div className="root">
         <LibraryControllerContainer />
-        <PlayerContainer />
-        <TrackImageContainer />
-        <TrackListContainer />
+        <div className="wrapper-2">
+          <TrackImageContainer />
+          <TrackListContainer />
+        </div>
+        <div className="wrapper-3">
+          <PlayerContainer />
+        </div>
       </div>
     );
   }

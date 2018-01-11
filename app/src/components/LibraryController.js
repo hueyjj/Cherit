@@ -5,6 +5,12 @@ import "../styles/LibraryController.css";
 class LibraryController extends Component {
   constructor() {
     super();
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    const { loadLibrary } = this.props;
+    loadLibrary(null);
   }
 
   render() {
@@ -12,10 +18,7 @@ class LibraryController extends Component {
 
     return (
       <div className="library-controller">
-        <button onClick={loadLibrary}>load library</button>
-        {/* <button onClick={removeFromLibrary}>remove</button> */}
-        <ul>
-        </ul>
+        <button onClick={this.onClick}>load library</button>
       </div >
     );
   }

@@ -11,8 +11,12 @@ import mm from 'musicmetadata';
 import fs from 'fs';
 import path from "path";
 
-export const getDirectories = () => {
+export const getDirectories = (dir) => {
   return new Promise((resolve, reject) => {
+    if (dir) {
+      resolve([dir]);
+      return;
+    }
     dialog.showOpenDialog({
       properties: ['openDirectory', 'multiSelections'],
     }, (dirs) => {
@@ -102,4 +106,41 @@ export const buildTrackList = (dirsFiles) => {
     .catch((reason) => {
       console.warn("buildTrackList: " + reason);
     });
+};
+
+export const range = (a, b) => {
+  let n = [];
+  if (a && b) {
+    for (let x = a; x < b; x++) n.push(x);
+    return n;
+  } else if (a) {
+    for (let x = 0; x < a; x++) n.push(x);
+    return n;
+  } else if (b) {
+    for (let x = b - 1; b >= 0; x--) n.push(x);   // reverse -> null, 3 -> [2, 1, 0]
+    return n;
+  } else {
+    return n;
+  }
+};
+
+export const randomize = (queue) => {
+  if (queue.length <= 0) return [];
+
+  let random = (n) => (Math.floor(Math.random(n) * Math.floor(n)));
+
+  let oldQueue = [...queue], newQueue = [];
+  while (oldQueue.length > 0) {
+    let i = random(oldQueue.length);
+    newQueue.push(oldQueue[i]);
+    oldQueue.splice(i, 1);
+  }
+  return newQueue;
+};
+
+export const timeFunction = (fn, ...theArgs) => {
+  var t0 = performance.now();
+  fn(...theArgs);
+  var t1 = performance.now();
+  return fn.name + "completed in " + (t1 - t0) + " ms.";
 };

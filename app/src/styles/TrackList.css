@@ -1,0 +1,9 @@
+.track-list-container {
+  width: 400px;
+  /* height: 100%; */
+  border: 1px solid black;
+}
+
+.track-list {
+  padding: 1em;
+}
