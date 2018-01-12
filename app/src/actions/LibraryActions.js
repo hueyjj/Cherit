@@ -39,5 +39,5 @@ export const loadLibrary = (dir) => async (dispatch, getState) => {
   dispatch(setLibraryTrackList(trackList));
 
   let numTracks = getState().library.trackList.length;
-  dispatch(setTrackQueue(numTracks));
+  dispatch(setTrackQueue(null, numTracks));
 };

@@ -10,22 +10,18 @@ export const createTrack = (track, index) => ({
   },
 });
 
-export const setTrackQueue = (numTracks) => ({
+export const setTrackQueue = (queue, numTracks) => ({
   type: types.TRACK_SET_QUEUE,
-  payload: range(numTracks),
+  payload: range(queue, numTracks),
 });
 
 export const shuffleTrackQueue = () => ({
   type: types.TRACK_SHUFFLE_QUEUE,
 });
 
-export const setNewTrackAudio = (src, volume, index) => ({
+export const setNewTrackAudio = (audio) => ({
   type: types.TRACK_SET_NEW_AUDIO,
-  payload: {
-    src: src,
-    volume: volume,
-    index: index,
-  }
+  payload: audio,
 });
 
 export const removeTrackAudio = () => ({

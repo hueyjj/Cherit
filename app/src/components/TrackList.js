@@ -11,7 +11,7 @@ class TrackList extends Component {
   }
 
   createTrackList() {
-    const { trackList, setTrack, play } = this.props;
+    const { trackList, setTrack, play, track } = this.props;
     return trackList
       ? trackList.map((trackInfo, index) => {
         return (

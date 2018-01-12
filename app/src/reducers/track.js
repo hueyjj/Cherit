@@ -9,7 +9,7 @@ const initialState = {
   index: 0,
   image: null,
 
-  looop: false,
+  loop: false,
   queue: [],
 };
 
@@ -45,13 +45,9 @@ const track = (state = initialState, action) => {
     }
 
     case types.TRACK_SET_NEW_AUDIO: {
-      let audio = new Audio();
-      audio.src = action.payload.src;
-      audio.volume = action.payload.volume;
-      audio.index = action.payload.index;
       return {
         ...state,
-        audio: audio,
+        audio: action.payload,
       };
     }
 

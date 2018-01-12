@@ -1,3 +1,9 @@
+import { remote } from "electron";
+const { dialog } = remote;
+import mm from 'musicmetadata';
+import fs from 'fs';
+import path from "path";
+
 import {
   ERROR_LOAD_LIBRARY,
   ERROR_LOADING_FILES,
@@ -5,11 +11,6 @@ import {
   MUSIC_FORMAT,
 } from "../constants/LibraryConstants";
 
-import { remote } from "electron";
-const { dialog } = remote;
-import mm from 'musicmetadata';
-import fs from 'fs';
-import path from "path";
 
 export const getDirectories = (dir) => {
   return new Promise((resolve, reject) => {
@@ -108,9 +109,12 @@ export const buildTrackList = (dirsFiles) => {
     });
 };
 
-export const range = (a, b) => {
+export const range = (queue, a, b) => {
   let n = [];
-  if (a && b) {
+  if (queue) {
+    return [...queue];
+  }
+  else if (a && b) {
     for (let x = a; x < b; x++) n.push(x);
     return n;
   } else if (a) {
