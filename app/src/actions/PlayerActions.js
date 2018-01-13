@@ -15,12 +15,20 @@ export const updatePlayerProgress = (time) => ({
   payload: time,
 })
 
+export const setPlayerDuration = (duration) => ({
+  type: types.PLAYER_SET_DURATION,
+  payload: duration,
+})
+
 export const createNewAudio = (src, volume, index) => (dispatch, getState) => {
   let audio = new Audio();
   audio.src = src;
   audio.volume = volume;
   audio.index = index;
 
+  audio.addEventListener("loadedmetadata", () => {
+    dispatch(setPlayerDuration(audio.duration));
+  });
   audio.addEventListener("ended", () => {
     dispatch(nextTrack());
   });
@@ -46,9 +54,12 @@ export const play = () => async (dispatch, getState) => {
   if (!audio || index != audio.index) { // New track or switch track
     dispatch(removeTrackAudio());
 
-    let src = trackList[index].path,
+    let newTrack = trackList[index],
+      src = newTrack.path,
       volume = track.volume,
       newIndex = index;
+
+    dispatch(setTrack(newTrack, index));
 
     audio = createNewAudio(src, volume, newIndex)(dispatch, getState);
     dispatch(setNewTrackAudio(audio));

@@ -11,13 +11,15 @@ class Root extends Component {
   render() {
     return (
       <div className="root">
-        <LibraryControllerContainer />
-        <div className="wrapper-2">
-          <TrackImageContainer />
-          <TrackListContainer />
-        </div>
-        <div className="wrapper-3">
-          <PlayerContainer />
+        <div className="wrapper-0">
+          <LibraryControllerContainer />
+          <div className="wrapper-2">
+            <TrackImageContainer />
+            <TrackListContainer />
+          </div>
+          <div className="wrapper-3">
+            <PlayerContainer />
+          </div>
         </div>
       </div>
     );
