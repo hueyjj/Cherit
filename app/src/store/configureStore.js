@@ -10,7 +10,9 @@ export default function configureStore(initialState) {
     initialState,
     applyMiddleware(
       ReduxThunk,
-      createLogger(),
+      createLogger({
+        collapsed: true,
+      }),
     ),
   );
 }

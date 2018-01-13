@@ -2,6 +2,7 @@ import * as utils from "../utils/utils"
 import * as types from "../constants/PlayerConstants";
 
 import {
+  setTrack,
   createTrack,
   setTrackQueue,
   removeTrackAudio,
@@ -81,14 +82,10 @@ export const nextTrack = () => async (dispatch, getState) => {
   const { queue } = track;
   const { trackList } = library;
 
-  let nextTrackIndex = queue[1];
-  console.log(nextTrackIndex);
-  if (nextTrackIndex)
-    dispatch(createTrack(trackList[nextTrackIndex], nextTrackIndex));
-  else
-    return;
-
   if (queue.length > 1) {
+    let nextTrackIndex = queue[1];
+    dispatch(setTrack(trackList[nextTrackIndex], nextTrackIndex));
+
     let nextTrackQueue = [...queue].slice(1);
     dispatch(setTrackQueue(nextTrackQueue, null));
     dispatch(play());

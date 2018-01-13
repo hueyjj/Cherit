@@ -16,17 +16,11 @@ const initialState = {
 const track = (state = initialState, action) => {
   switch (action.type) {
     case types.TRACK_SET: {
-      let image = null;
-      if (action.payload.track && action.payload.track.picture.length > 0) {
-        let pic = action.payload.track.picture;
-        image = "data:image/" + pic[0].format + ";base64,"
-          + base64ArrayBuffer(pic[0].data);
-      }
       return {
         ...state,
         track: action.payload.track,
         index: action.payload.index,
-        image: image,
+        image: action.payload.image,
       };
     }
 
