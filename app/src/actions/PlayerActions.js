@@ -10,6 +10,11 @@ import {
   shuffleTrackQueue,
 } from "../actions/TrackActions";
 
+export const updatePlayerProgress = (time) => ({
+  type: types.PLAYER_UPDATE_PROGRESS,
+  payload: time,
+})
+
 export const createNewAudio = (src, volume, index) => (dispatch, getState) => {
   let audio = new Audio();
   audio.src = src;
@@ -23,7 +28,8 @@ export const createNewAudio = (src, volume, index) => (dispatch, getState) => {
     console.log("seeked");
   })
   audio.addEventListener("timeupdate", () => {
-    // TODO implement track seeker
+    let time = audio.currentTime;
+    dispatch(updatePlayerProgress(time));
   });
 
   return audio;

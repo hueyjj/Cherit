@@ -17,7 +17,7 @@ class Track extends Component {
 
     let timeNow = performance.now();
 
-    // Perform double click if within 
+    // Perform double click within a time frame.
     if (timeNow - this.lastFired <= this.doubleClickTime) {
       const { play } = this.props;
       play();

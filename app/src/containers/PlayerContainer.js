@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 import Player from "../components/Player";
 import { play, stop, pause, loop, shuffle } from "../actions/PlayerActions";
 
-const PlayerContainer = (props) => { 
+const PlayerContainer = (props) => {
   return (
-    <Player {...props} />
+      <Player {...props} />
   );
 };
 
-const mapStateToProps = (state) => { 
+const mapStateToProps = (state) => {
   const { player } = state;
 
   return {
