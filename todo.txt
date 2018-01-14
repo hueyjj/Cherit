@@ -1,3 +1,7 @@
+- Add volume control
+- Add youtube-dl capabilities
+- Add customize capabilities
+
 - Smooth progress bar transition
 - Website after project is done
 - README.md revamp
