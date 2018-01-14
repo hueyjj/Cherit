@@ -2,6 +2,8 @@
 - Add youtube-dl capabilities
 - Add customize capabilities
 
+- High cpu usage somewhere. Analyze and fix later
+
 - Smooth progress bar transition
 - Website after project is done
 - README.md revamp
