@@ -1,0 +1,4 @@
+- Smooth progress bar transition
+- Website after project is done
+- README.md revamp
+- Release builds for windows and linux
