@@ -21,6 +21,7 @@ class TrackList extends Component {
             trackInfo={trackInfo}
             setTrack={setTrack}
             jumpToTrack={jumpToTrack}
+            track={track}
           />
         );
       })

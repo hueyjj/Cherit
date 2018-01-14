@@ -20,10 +20,11 @@ const PlayerContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { player } = state;
+  const { player, library } = state;
 
   return {
     player,
+    library,
   }
 };
 

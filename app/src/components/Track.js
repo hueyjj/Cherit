@@ -8,7 +8,7 @@ class Track extends Component {
     this.lastFired = 0;
     this.doubleClickTime = 300; // 300ms
     this.onClick = this.onClick.bind(this);
-    //this.onDoubleClick = this.onDoubleClick.bind(this);
+    this.getStyle = this.getStyle.bind(this);
   }
 
   onClick(event) {
@@ -28,14 +28,10 @@ class Track extends Component {
     this.lastFired = timeNow;
   }
 
-  // onDoubleClick(event) {
-  //   event.preventDefault();
-  //   event.stopPropagation();
-  //   console.log(event);
-  //   console.log("double clicked");
-  //   const { play } = this.props;
-  //   play();
-  // }
+  getStyle() {
+    const { track, index } = this.props;
+    return track.index == index ? { background: 'lightgreen', } : {};
+  }
 
   render() {
     const { trackInfo } = this.props;
@@ -43,6 +39,8 @@ class Track extends Component {
       <div
         className="track-container"
         onClick={this.onClick}
+        ref={(input) => { this.container = input; }}
+        style={this.getStyle()}
       >
         <li className="track">{trackInfo.title}</li>
       </div >

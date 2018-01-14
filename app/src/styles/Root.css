@@ -36,8 +36,14 @@
 }
 
 .wrapper-0 {
+  display: flex;
+  flex-direction: column;
   min-width: 700px;
   max-width: 700px;
+  width: 700px;
+  min-height: 400px;
+  max-height: 800px;
+  height: 500px;
 }
 
 .wrapper-1 {
@@ -48,6 +54,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 100%;
 }
 
 .wrapper-3 {
