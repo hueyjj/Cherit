@@ -6,10 +6,22 @@ import Seeker from "../components/Seeker";
 
 class Player extends Component {
   render() {
-    const { player, play, stop, pause, loop, shuffle } = this.props;
+    const {
+      player,
+      play,
+      stop,
+      pause,
+      loop,
+      shuffle,
+      seek,
+      } = this.props;
+
     return (
       <div className="player-container">
-        <Seeker player={player} />
+        <Seeker
+          player={player}
+          seek={seek}
+        />
         <div className="player-controllers">
           <button onClick={play}>Play</button>
           <button onClick={pause}>Pause</button>

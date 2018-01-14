@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Player from "../components/Player";
-import { play, stop, pause, loop, shuffle } from "../actions/PlayerActions";
+import { play, stop, pause, loop, shuffle, seek } from "../actions/PlayerActions";
 
 const PlayerContainer = (props) => {
   return (
@@ -24,6 +24,7 @@ const mapDispatchToProps = {
   pause,
   loop,
   shuffle,
+  seek,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);

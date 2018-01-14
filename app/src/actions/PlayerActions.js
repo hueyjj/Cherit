@@ -110,3 +110,9 @@ export const nextTrack = () => async (dispatch, getState) => {
     dispatch(setTrackQueue([], null));
   }
 };
+
+export const seek = (time) => async (dispatch, getState) => {
+  const { track, player } = getState();
+  track.audio.currentTime = time;
+  dispatch(updatePlayerProgress(time));
+};
