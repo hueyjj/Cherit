@@ -10,6 +10,8 @@ const initialState = {
 
   loop: false,
   queue: [],
+  previous: [],
+  copyQueue: [],
 };
 
 const track = (state = initialState, action) => {

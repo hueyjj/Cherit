@@ -51,12 +51,13 @@ export const play = () => async (dispatch, getState) => {
 
   let { audio } = track;
 
-  if (trackList.length <= 0) return;
+  if (trackList.length < 0) return;
 
-  if (audio)
+  if ((audio && index != audio.index) || (!audio)) // Switch tracks
+    dispatch(jumpToTrack(index));
+  else if (audio) // Continue playing
     audio.play();
-  else
-    dispatch(nextTrack());
+
 };
 
 export const pause = () => async (dispatch, getState) => {
@@ -118,14 +119,27 @@ export const seek = (time) => (dispatch, getState) => {
     track.audio.currentTime = time;
 };
 
-export const jumpToTrack = (index) => (dispatch, getState) => {
+export const jumpToTrack = (trackIndex) => (dispatch, getState) => {
   dispatch(removeTrackAudio());
 
   const { track } = getState();
   const { queue } = track;
 
-  let newQ = queue.slice(index);
-  newQ = newQ.length > 0 ? newQ : [index];
+  // Search for track index in queue
+  let index = -1;
+  for (let i = 0; i < queue.length; i++) {
+    if (trackIndex == queue[i]) {
+      index = i;
+    }
+  }
+
+  // Remove everything before track index in queue or set to play just that track
+  let newQ;
+  if (index < 0)
+    newQ = [trackIndex];
+  else
+    newQ = queue.slice(index);
+
   dispatch(setTrackQueue(newQ));
   dispatch(nextTrack());
 };
