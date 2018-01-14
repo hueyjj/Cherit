@@ -19,7 +19,6 @@ class Seeker extends Component {
   }
 
   onClick(e) {
-    console.log(e.target);
     let containerSpecs = this.container.getBoundingClientRect(),
       x = e.clientX - containerSpecs.left;
 

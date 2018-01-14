@@ -14,6 +14,7 @@ class Player extends Component {
       loop,
       shuffle,
       seek,
+      nextTrack,
       } = this.props;
 
     return (
@@ -28,6 +29,7 @@ class Player extends Component {
           <button onClick={stop}>Stop</button>
           <button onClick={loop}>Loop</button>
           <button onClick={shuffle}>Shuffle</button>
+          <button onClick={nextTrack}>NextTrack</button>
         </div>
       </div>
     );

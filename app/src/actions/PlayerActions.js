@@ -8,6 +8,7 @@ import {
   removeTrackAudio,
   setNewTrackAudio,
   shuffleTrackQueue,
+  popQueue,
 } from "../actions/TrackActions";
 
 export const updatePlayerProgress = (time) => ({
@@ -64,14 +65,11 @@ export const play = () => async (dispatch, getState) => {
     audio = createNewAudio(src, volume, newIndex)(dispatch, getState);
     dispatch(setNewTrackAudio(audio));
 
-    if (audio) {
-      audio.load();
-      audio.play();
-    }
+    audio.load();
   }
-  else {
-    audio.play();
-  }
+
+  audio.play();
+
 };
 
 export const pause = () => async (dispatch, getState) => {
@@ -96,15 +94,15 @@ export const nextTrack = () => async (dispatch, getState) => {
   dispatch(removeTrackAudio());
 
   const { track, library } = getState();
-  const { queue } = track;
   const { trackList } = library;
 
-  if (queue.length > 1) {
-    let nextTrackIndex = queue[1];
-    dispatch(setTrack(trackList[nextTrackIndex], nextTrackIndex));
+  if (track.queue.length > 1) {
+    let queue = getState().track.queue;
+    if (queue.length <= 0) return;
 
-    let nextTrackQueue = [...queue].slice(1);
-    dispatch(setTrackQueue(nextTrackQueue, null));
+    let nextTrackIndex = queue[0];
+    dispatch(popQueue());
+    dispatch(setTrack(trackList[nextTrackIndex], nextTrackIndex));
     dispatch(play());
   } else {
     dispatch(setTrackQueue([], null));
@@ -113,6 +111,6 @@ export const nextTrack = () => async (dispatch, getState) => {
 
 export const seek = (time) => async (dispatch, getState) => {
   const { track, player } = getState();
-  track.audio.currentTime = time;
-  dispatch(updatePlayerProgress(time));
+  if (track.audio)
+    track.audio.currentTime = time;
 };

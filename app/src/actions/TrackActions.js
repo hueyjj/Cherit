@@ -39,3 +39,14 @@ export const setTrack = (track, index) => (dispatch, getState) => {
   }
   dispatch(createTrack(track, image, index));
 };
+
+export const popQueue = () => (dispatch, getState) => {
+  const { track, library } = getState();
+  const { queue } = track;
+  const { trackList } = library;
+
+  if (queue.length > 0) {
+    let nextTrackQueue = [...queue].slice(1);
+    dispatch(setTrackQueue(nextTrackQueue, null));
+  }
+};
