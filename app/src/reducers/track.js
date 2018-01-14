@@ -65,6 +65,13 @@ const track = (state = initialState, action) => {
       };
     }
 
+    case types.TRACK_SET_VOLUME: {
+      return {
+        ...state,
+        volume: action.payload,
+      };
+    }
+
     default:
       return state;
   }

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import "../styles/Player.css";
 
 import Seeker from "../components/Seeker";
+import Volume from "../components/Volume";
 
 class Player extends Component {
   render() {
@@ -16,7 +17,9 @@ class Player extends Component {
       shuffle,
       seek,
       nextTrack,
+      setTrackVolume,      
       library,
+      track,
       } = this.props;
 
     return (
@@ -34,6 +37,10 @@ class Player extends Component {
           <button onClick={shuffle}>Shuffle</button>
           <button onClick={nextTrack}>NextTrack</button>
           {library.trackList.length} tracks
+          <Volume
+            track={track}
+            setTrackVolume={setTrackVolume}
+          />
         </div>
       </div>
     );

@@ -1,0 +1,21 @@
+.volume-container {
+  width: 200px;
+  height: 10px;
+  background: rgba(144, 144, 144,.1);
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.volume-container:hover {
+  background: rgba(144, 144, 144, .2);
+  cursor: pointer;
+}
+
+.volume-progress-bar {
+  height: 10px; 
+  width: 100%;
+  background-color: red;
+  transition: all 0.1s ease;
+  transform: scaleX(0);
+  transform-origin: 0 0;
+}

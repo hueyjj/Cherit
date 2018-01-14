@@ -6,10 +6,6 @@
   user-select: none;
 }
 
-.track-container:hover { 
-  background-color: lightblue;
-}
-
 .track {
   overflow: hidden;
   text-overflow: ellipsis;

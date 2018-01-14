@@ -13,6 +13,10 @@ import {
   nextTrack,
 } from "../actions/PlayerActions";
 
+import {
+  setTrackVolume,
+} from "../actions/TrackActions";
+
 const PlayerContainer = (props) => {
   return (
     <Player {...props} />
@@ -20,11 +24,12 @@ const PlayerContainer = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  const { player, library } = state;
+  const { player, library, track } = state;
 
   return {
     player,
     library,
+    track,
   }
 };
 
@@ -37,6 +42,7 @@ const mapDispatchToProps = {
   shuffle,
   seek,
   nextTrack,
+  setTrackVolume,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerContainer);

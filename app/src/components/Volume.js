@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import "../styles/Seeker.css";
+import "../styles/Volume.css";
 
-class Seeker extends Component {
+class Volume extends Component {
   constructor(props) {
     super(props);
     this.progress = 0;
@@ -11,38 +11,38 @@ class Seeker extends Component {
   }
 
   getStyle() {
-    const { player } = this.props;
-    this.progress = player.currentTime / player.duration;
+    const { track } = this.props;
+    this.progress = track.volume;
+    console.log(this.progress);
     return {
       transform: 'scaleX(' + this.progress + ')',
-    };
+    }
   }
 
   onClick(e) {
     let containerSpecs = this.container.getBoundingClientRect(),
       x = e.clientX - containerSpecs.left;
 
-    let progressRate = x / containerSpecs.width;
-    const { seek, player } = this.props;
-    seek(player.duration * progressRate);
+    let rate = x / containerSpecs.width;
+    const { setTrackVolume } = this.props;
+    setTrackVolume(rate);
   }
 
   render() {
     return (
       <div
-        className="seeker-container"
+        className="volume-container"
         ref={(input) => { this.container = input; }}
         onClick={this.onClick}
       >
         <div
-          className="seeker-progress-bar"
+          className="volume-progress-bar"
           style={this.getStyle()}
         >
-          <div className="seeker-button"></div>
         </div>
       </div>
     );
   }
 }
 
-export default Seeker;
+export default Volume;

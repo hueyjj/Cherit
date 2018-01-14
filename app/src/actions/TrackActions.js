@@ -34,6 +34,18 @@ export const removeTrackAudio = () => ({
   type: types.TRACK_REMOVE_AUDIO,
 });
 
+export const setTrackVolume = (volume) => (dispatch, getState) => {
+  const { track } = getState();
+  if (track.audio) {
+    track.audio.volume = volume;
+  }
+
+  dispatch({
+    type: types.TRACK_SET_VOLUME,
+    payload: volume,
+  });
+};
+
 export const setTrack = (track, index) => (dispatch, getState) => {
   let image = null;
   if (track && track.picture.length > 0) {
