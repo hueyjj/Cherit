@@ -11,7 +11,7 @@ class TrackList extends Component {
   }
 
   createTrackList() {
-    const { trackList, setTrack, play, track } = this.props;
+    const { trackList, setTrack, play, track, jumpToTrack } = this.props;
     return trackList
       ? trackList.map((trackInfo, index) => {
         return (
@@ -20,7 +20,7 @@ class TrackList extends Component {
             index={index}
             trackInfo={trackInfo}
             setTrack={setTrack}
-            play={play}
+            jumpToTrack={jumpToTrack}
           />
         );
       })

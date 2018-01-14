@@ -19,8 +19,8 @@ class Track extends Component {
 
     // Perform double click within a time frame.
     if (timeNow - this.lastFired <= this.doubleClickTime) {
-      const { play } = this.props;
-      play();
+      const { jumpToTrack, index } = this.props;
+      jumpToTrack(index);
     } else {
       const { trackInfo, index, setTrack } = this.props;
       setTrack(trackInfo, index);

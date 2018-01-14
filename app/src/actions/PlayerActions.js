@@ -49,27 +49,14 @@ export const play = () => async (dispatch, getState) => {
   const { index } = track;
   const { trackList } = library;
 
+  let { audio } = track;
+
   if (trackList.length <= 0) return;
 
-  let audio = track.audio;
-  if (!audio || index != audio.index) { // New track or switch track
-    dispatch(removeTrackAudio());
-
-    let newTrack = trackList[index],
-      src = newTrack.path,
-      volume = track.volume,
-      newIndex = index;
-
-    dispatch(setTrack(newTrack, index));
-
-    audio = createNewAudio(src, volume, newIndex)(dispatch, getState);
-    dispatch(setNewTrackAudio(audio));
-
-    audio.load();
-  }
-
-  audio.play();
-
+  if (audio)
+    audio.play();
+  else
+    dispatch(nextTrack());
 };
 
 export const pause = () => async (dispatch, getState) => {
@@ -93,24 +80,52 @@ export const shuffle = () => async (dispatch, getState) => {
 export const nextTrack = () => async (dispatch, getState) => {
   dispatch(removeTrackAudio());
 
-  const { track, library } = getState();
+  let { track, library } = getState();
   const { trackList } = library;
 
-  if (track.queue.length > 1) {
+  if (track.queue.length > 0) {
+    // Check queue
     let queue = getState().track.queue;
     if (queue.length <= 0) return;
 
+    // Get next track and remove it from queue
     let nextTrackIndex = queue[0];
     dispatch(popQueue());
+
+    // Set track
     dispatch(setTrack(trackList[nextTrackIndex], nextTrackIndex));
+
+    track = getState().track;
+
+    // Create actual audio object and set it in the store
+    let newTrack = trackList[track.index],
+      src = newTrack.path,
+      volume = track.volume,
+      newIndex = track.index;
+    let audio = createNewAudio(src, volume, newIndex)(dispatch, getState);
+    audio.load();
+
+    dispatch(setNewTrackAudio(audio));
     dispatch(play());
   } else {
     dispatch(setTrackQueue([], null));
   }
 };
 
-export const seek = (time) => async (dispatch, getState) => {
+export const seek = (time) => (dispatch, getState) => {
   const { track, player } = getState();
   if (track.audio)
     track.audio.currentTime = time;
+};
+
+export const jumpToTrack = (index) => (dispatch, getState) => {
+  dispatch(removeTrackAudio());
+
+  const { track } = getState();
+  const { queue } = track;
+
+  let newQ = queue.slice(index);
+  newQ = newQ.length > 0 ? newQ : [index];
+  dispatch(setTrackQueue(newQ));
+  dispatch(nextTrack());
 };

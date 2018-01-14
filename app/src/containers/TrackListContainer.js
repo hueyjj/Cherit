@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import TrackList from '../components/TrackList';
 import { setTrack } from "../actions/TrackActions";
-import { play } from "../actions/PlayerActions";
+import { play, jumpToTrack } from "../actions/PlayerActions";
 
 const TrackListContainer = (props) => {
   return (
@@ -24,6 +24,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   setTrack,
   play,
+  jumpToTrack,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrackListContainer);
