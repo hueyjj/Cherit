@@ -17,6 +17,18 @@ export const setTrackQueue = (queue, numTracks) => ({
   payload: range(queue, numTracks),
 });
 
+export const toggleTrackLoopAction = () => ({
+  type: types.TRACK_TOGGLE_LOOP
+})
+
+export const toggleTrackQueueLoopAction = () => ({
+  type: types.TRACK_TOGGLE_QUEUE_LOOP,
+})
+
+export const copyTrackQueue = () => ({
+  type: types.TRACK_COPY_QUEUE,
+});
+
 export const shuffleTrackQueue = () => ({
   type: types.TRACK_SHUFFLE_QUEUE,
 });

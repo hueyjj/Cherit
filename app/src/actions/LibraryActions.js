@@ -1,6 +1,9 @@
 import * as utils from "../utils/utils"
 import * as types from "../constants/LibraryConstants";
-import { setTrackQueue } from "../actions/TrackActions";
+import {
+  setTrackQueue,
+  copyTrackQueue,
+} from "../actions/TrackActions";
 
 export const setLibraryDirs = (dirs) => ({
   type: types.LIBRARY_SET_DIRS,
@@ -40,4 +43,6 @@ export const loadLibrary = (dir) => async (dispatch, getState) => {
 
   let numTracks = getState().library.trackList.length;
   dispatch(setTrackQueue(null, numTracks));
+
+  dispatch(copyTrackQueue());
 };
