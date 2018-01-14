@@ -3,6 +3,9 @@ import * as types from "../constants/PlayerConstants";
 const initialState = {
   duration: 0,
   currentTime: 0,
+  
+  loop: false,
+  queueLoop: false,
 }
 
 const player = (state = initialState, action) => {
@@ -19,6 +22,20 @@ const player = (state = initialState, action) => {
         ...state,
         duration: action.payload,
       }
+    }
+    
+    case types.PLAYER_TOGGLE_LOOP: {
+      return {
+        ...state,
+        loop: !state.loop,
+      };
+    }
+
+    case types.PLAYER_TOGGLE_QUEUE_LOOP: {
+      return {
+        ...state,
+        queueLoop: !state.queueLoop,
+      };
     }
 
     default:

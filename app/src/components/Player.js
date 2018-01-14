@@ -11,8 +11,8 @@ class Player extends Component {
       play,
       stop,
       pause,
-      toggleTrackLoop,
-      toggleTrackQueueLoop,
+      togglePlayerLoop,
+      togglePlayerQueueLoop,
       shuffle,
       seek,
       nextTrack,
@@ -28,8 +28,8 @@ class Player extends Component {
           <button onClick={play}>Play</button>
           <button onClick={pause}>Pause</button>
           <button onClick={stop}>Stop</button>
-          <button onClick={toggleTrackLoop}>LoopTrack</button>
-          <button onClick={toggleTrackQueueLoop}>Loop</button>
+          <button onClick={togglePlayerLoop}>LoopTrack</button>
+          <button onClick={togglePlayerQueueLoop}>Loop</button>
           <button onClick={shuffle}>Shuffle</button>
           <button onClick={nextTrack}>NextTrack</button>
         </div>

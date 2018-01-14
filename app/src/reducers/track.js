@@ -8,9 +8,6 @@ const initialState = {
   index: 0,
   image: null,
 
-  loop: false,
-  queueLoop: false,
-  
   queue: [],
   prevStack: [],
   copyQueue: [],
@@ -34,20 +31,6 @@ const track = (state = initialState, action) => {
       };
     }
 
-    case types.TRACK_TOGGLE_LOOP: {
-      return {
-        ...state,
-        loop: !state.loop,
-      };
-    }
-
-    case types.TRACK_TOGGLE_QUEUE_LOOP: {
-      return {
-        ...state,
-        queueLoop: !state.queueLoop,
-      };
-    }
-
     case types.TRACK_COPY_QUEUE: {
       return {
         ...state,
@@ -56,9 +39,11 @@ const track = (state = initialState, action) => {
     }
 
     case types.TRACK_SHUFFLE_QUEUE: {
+      let randomQ = randomize(state.copyQueue);
+      randomQ = randomQ[0] == state.index ? randomQ.slice(1) : randomQ ;
       return {
         ...state,
-        queue: randomize(state.copyQueue),
+        queue: randomQ,
       }
     }
 

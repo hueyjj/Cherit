@@ -4,14 +4,20 @@ import * as types from "../constants/PlayerConstants";
 import {
   setTrack,
   createTrack,
-  toggleTrackLoopAction,
-  toggleTrackQueueLoopAction,
   setTrackQueue,
   removeTrackAudio,
   setNewTrackAudio,
   shuffleTrackQueue,
   popQueue,
 } from "../actions/TrackActions";
+
+export const togglePlayerLoopAction = () => ({
+  type: types.PLAYER_TOGGLE_LOOP
+})
+
+export const togglePlayerQueueLoopAction = () => ({
+  type: types.PLAYER_TOGGLE_QUEUE_LOOP,
+})
 
 export const updatePlayerProgress = (time) => ({
   type: types.PLAYER_UPDATE_PROGRESS,
@@ -33,9 +39,6 @@ export const createNewAudio = (src, volume, index) => (dispatch, getState) => {
     dispatch(setPlayerDuration(audio.duration));
   });
   audio.addEventListener("ended", () => {
-    if (getState().track.loop)
-      dispatch(pushQueueFront(audio.index));
-
     dispatch(nextTrack());
   });
   audio.addEventListener("seeked", () => {
@@ -49,7 +52,7 @@ export const createNewAudio = (src, volume, index) => (dispatch, getState) => {
   return audio;
 };
 
-export const play = () => async (dispatch, getState) => {
+export const play = () => (dispatch, getState) => {
   const { track, library } = getState();
   const { index } = track;
   const { trackList } = library;
@@ -62,35 +65,34 @@ export const play = () => async (dispatch, getState) => {
     dispatch(jumpToTrack(index));
   else if (audio) // Continue playing
     audio.play();
-
 };
 
-export const pause = () => async (dispatch, getState) => {
+export const pause = () => (dispatch, getState) => {
   const { track } = getState();
   if (track.audio)
     track.audio.pause();
 }
 
-export const stop = () => async (dispatch, getState) => {
+export const stop = () => (dispatch, getState) => {
   dispatch(removeTrackAudio());
 };
 
-export const toggleTrackLoop = () => async (dispatch, getState) => {
-  dispatch(toggleTrackLoopAction());
+export const togglePlayerLoop = () => (dispatch, getState) => {
+  dispatch(togglePlayerLoopAction());
 }
 
-export const toggleTrackQueueLoop = () => async (dispatch, getState) => {
-  dispatch(toggleTrackQueueLoopAction());
+export const togglePlayerQueueLoop = () => (dispatch, getState) => {
+  dispatch(togglePlayerQueueLoopAction());
 };
 
-export const shuffle = () => async (dispatch, getState) => {
+export const shuffle = () => (dispatch, getState) => {
   dispatch(shuffleTrackQueue());
 };
 
-export const nextTrack = () => async (dispatch, getState) => {
+export const nextTrack = () => (dispatch, getState) => {
   dispatch(removeTrackAudio());
 
-  let { track, library } = getState();
+  let { track, library, player } = getState();
   const { trackList } = library;
 
   if (track.queue.length > 0) {
@@ -99,8 +101,16 @@ export const nextTrack = () => async (dispatch, getState) => {
     if (queue.length <= 0) return;
 
     // Get next track and remove it from queue
-    let nextTrackIndex = queue[0];
-    dispatch(popQueue());
+    let nextTrackIndex;
+    if (player.loop) {
+      console.log('looped');
+      nextTrackIndex = track.index;
+      if (queue[0] == track.index)
+        dispatch(popQueue());
+    } else {
+      nextTrackIndex = queue[0];
+      dispatch(popQueue());
+    }
 
     // Set track
     dispatch(setTrack(trackList[nextTrackIndex], nextTrackIndex));
@@ -118,7 +128,7 @@ export const nextTrack = () => async (dispatch, getState) => {
     dispatch(setNewTrackAudio(audio));
     dispatch(play());
   } else {
-    if (track.queueLoop) {
+    if (player.queueLoop) {
       dispatch(setTrackQueue([...track.copyQueue]));
       dispatch(nextTrack());
     } else {
