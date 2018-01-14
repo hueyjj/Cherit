@@ -26,7 +26,10 @@ class Player extends Component {
       <div className="player-container">
         <Seeker
           player={player}
+          track={track}
           seek={seek}
+          play={play}
+          pause={pause}
         />
         <div className="player-controllers">
           <button onClick={play}>Play</button>
