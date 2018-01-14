@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 
 import "../styles/Volume.css";
 
+import {
+  TRACK_DEFAULT_VOLUME,
+  TRACK_VOLUME_REDUCTION_RATE
+} from "../constants/TrackConstants";
+
 class Volume extends Component {
   constructor(props) {
     super(props);
-    this.progress = 0;
+    this.progress = TRACK_DEFAULT_VOLUME;
     this.getStyle = this.getStyle.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
   getStyle() {
     const { track } = this.props;
-    this.progress = track.volume;
-    console.log(this.progress);
     return {
       transform: 'scaleX(' + this.progress + ')',
     }
@@ -24,8 +27,10 @@ class Volume extends Component {
       x = e.clientX - containerSpecs.left;
 
     let rate = x / containerSpecs.width;
+    this.progress = rate;
+    
     const { setTrackVolume } = this.props;
-    setTrackVolume(rate);
+    setTrackVolume(rate * TRACK_VOLUME_REDUCTION_RATE);
   }
 
   render() {

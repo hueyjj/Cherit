@@ -30,7 +30,12 @@ class Track extends Component {
 
   getStyle() {
     const { track, index } = this.props;
-    return track.index == index ? { background: 'lightgreen', } : {};
+    const { audio } = track;
+
+    if (audio && audio.index == index)
+        return { background: 'lightgreen' };
+
+    return track.index == index ? { background: 'lightblue' } : {};
   }
 
   render() {

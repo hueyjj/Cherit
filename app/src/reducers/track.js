@@ -4,7 +4,7 @@ import { randomize } from "../utils/utils";
 const initialState = {
   track: null,
   audio: null,
-  volume: 0.1,
+  volume: types.TRACK_DEFAULT_VOLUME,
   index: 0,
   image: null,
 
