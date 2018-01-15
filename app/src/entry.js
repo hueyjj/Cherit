@@ -16,8 +16,8 @@ ReactDOM.render(
 );
 
 // Tests
-const dir = "C://users/jj/github//project-blue//music//";
-
+//const dir = "C://users/jj/github//project-blue//music//";
+const dir = "C:/Users/JJ/Music/addedmusic_2017-11-20"
 let LibTest = new LibraryTest(store);
 LibTest.init(dir);
 LibTest.run();

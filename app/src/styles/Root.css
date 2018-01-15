@@ -33,6 +33,7 @@
 
 .root {
   min-width: 700px;
+  user-select: none;
 }
 
 .wrapper-0 {
