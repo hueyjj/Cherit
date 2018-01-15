@@ -6,10 +6,12 @@ import "../styles/Seeker.css";
 class Seeker extends Component {
   constructor(props) {
     super(props);
-    this.progress = 0;
-    this.mouseDown = false;
-    this.mouseLeft = false;
-    this.mouseIsOutside = false;
+    this.state = {
+      progress: 0,
+      mouseDown: false,
+      mouseLeft: false,
+      mouseIsOutside: false
+    }
 
     this.componentWillMount = this.componentWillMount.bind(this);
     this.getStyle = this.getStyle.bind(this);
@@ -24,8 +26,8 @@ class Seeker extends Component {
 
   componentWillMount() {
     let mouseUpFn = ((e) => {
-      if (this.mouseDown) {
-        this.mouseDown = false;
+      if (this.state.mouseDown) {
+        this.setState({mouseDown: false});
         this.onMouseUp(e);
       }
     }).bind(this);
@@ -43,13 +45,13 @@ class Seeker extends Component {
   getStyle() {
     this.updateProgress();
     return {
-      transform: 'scaleX(' + this.progress + ')',
+      transform: 'scaleX(' + this.state.progress + ')',
     };
   }
 
   updateProgress() {
     const { player } = this.props;
-    this.progress = player.currentTime / player.duration;
+    this.state.progress = player.currentTime / player.duration;
   }
 
   onClick(e) {
@@ -66,7 +68,7 @@ class Seeker extends Component {
 
   onMouseMove(e) {
     e.preventDefault();
-    if (this.mouseDown) {
+    if (this.state.mouseDown) {
       this.onClick(e);
     }
   }
@@ -74,22 +76,22 @@ class Seeker extends Component {
   onMouseDown(e) {
     e.preventDefault();
     this.container.focus();
-    this.mouseDown = true;
+    this.setState({mouseDown: true});
     this.props.pause();
   }
 
   onMouseUp(e) {
     this.container.focus();
-    this.mouseDown = false;
+    this.setState({mouseDOiwn: false});
     this.props.play();
   }
 
   onMouseEnter(e) {
-    this.mouseLeave = false;
+    this.setState({mouseLeave: false});
   }
 
   onMouseLeave(e) {
-    this.mouseLeave = true;
+    this.setState({mouseLeave: true});
   }
 
   render() {

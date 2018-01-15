@@ -11,7 +11,6 @@ import {
   MUSIC_FORMAT,
 } from "../constants/LibraryConstants";
 
-
 export const getDirectories = (dir) => {
   return new Promise((resolve, reject) => {
     if (dir) {

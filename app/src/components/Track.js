@@ -5,8 +5,12 @@ import "../styles/Track.css";
 class Track extends Component {
   constructor(props) {
     super(props);
-    this.lastFired = 0;
-    this.doubleClickTime = 300; // 300ms
+    this.state = {
+      lastFired: 0,
+      doubleClickTime: 300, // 300ms
+
+    }
+
     this.onClick = this.onClick.bind(this);
     this.getStyle = this.getStyle.bind(this);
   }
@@ -18,14 +22,14 @@ class Track extends Component {
     let timeNow = performance.now();
 
     // Perform double click within a time frame.
-    if (timeNow - this.lastFired <= this.doubleClickTime) {
+    if (timeNow - this.state.lastFired <= this.state.doubleClickTime) {
       const { jumpToTrack, index } = this.props;
       jumpToTrack(index);
     } else {
       const { trackInfo, index, setTrack } = this.props;
       setTrack(trackInfo, index);
     }
-    this.lastFired = timeNow;
+    this.setState({ lastFired: timeNow });
   }
 
   getStyle() {
@@ -33,7 +37,7 @@ class Track extends Component {
     const { audio } = track;
 
     if (audio && audio.index == index)
-        return { background: 'lightgreen' };
+      return { background: 'lightgreen' };
 
     return track.index == index ? { background: 'lightblue' } : {};
   }

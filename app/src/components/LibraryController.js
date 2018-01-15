@@ -5,6 +5,7 @@ import "../styles/LibraryController.css";
 class LibraryController extends Component {
   constructor() {
     super();
+    
     this.onClick = this.onClick.bind(this);
   }
 

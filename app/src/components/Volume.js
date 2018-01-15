@@ -9,10 +9,12 @@ import {
 class Volume extends Component {
   constructor(props) {
     super(props);
-    this.progress = TRACK_DEFAULT_VOLUME;
-    this.mouseDown = false;
-    this.mouseLeft = false;
-    this.mouseIsOutside = false;
+    this.state = {
+      progress: TRACK_DEFAULT_VOLUME,
+      mouseDown: false,
+      mouseLeft: false,
+      mouseIsOutside: false,
+    }
 
     this.componentWillMount = this.componentWillMount.bind(this);
     this.getStyle = this.getStyle.bind(this);
@@ -26,14 +28,14 @@ class Volume extends Component {
 
   componentWillMount() {
     let mouseUpFn = ((e) => {
-      if (this.mouseDown) {
-        this.mouseDown = false;
+      if (this.state.mouseDown) {
+        this.setState({ mouseDown: false });
         this.onMouseUp(e);
       }
     }).bind(this);
 
     let mouseMoveFn = ((e) => {
-      if (this.mouseDown) {
+      if (this.state.mouseDown) {
         this.onClick(e);
       }
     }).bind(this);
@@ -45,19 +47,19 @@ class Volume extends Component {
   getStyle() {
     const { track } = this.props;
     return {
-      transform: 'scaleX(' + this.progress + ')',
+      transform: 'scaleX(' + this.state.progress + ')',
     }
   }
 
-  onClick(e) {
+  async onClick(e) {
     let containerSpecs = this.container.getBoundingClientRect(),
       x = e.clientX - containerSpecs.left;
 
     let rate = x / containerSpecs.width;
-    if (rate >= 1) return;
+    if (rate < 0 || rate > 1) return;
 
-    this.progress = rate;
-
+    this.setState({ progress: rate });
+    
     const { setTrackVolume } = this.props;
 
     // Change the formula for log function for audio if necessary
@@ -67,7 +69,7 @@ class Volume extends Component {
 
   onMouseMove(e) {
     e.preventDefault();
-    if (this.mouseDown) {
+    if (this.state.mouseDown) {
       this.onClick(e);
     }
   }
@@ -75,20 +77,20 @@ class Volume extends Component {
   onMouseDown(e) {
     e.preventDefault();
     this.container.focus();
-    this.mouseDown = true;
+    this.setState({ mouseDown: true });
   }
 
   onMouseUp(e) {
     this.container.focus();
-    this.mouseDown = false;
+    this.setState({ mouseDown: false });
   }
 
   onMouseEnter(e) {
-    this.mouseLeave = false;
+    this.setState({ mouseLeft: false });
   }
 
   onMouseLeave(e) {
-    this.mouseLeave = true;
+    this.setState({ mouseLeft: true });
   }
 
   render() {
