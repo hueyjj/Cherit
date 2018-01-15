@@ -57,10 +57,10 @@ class Seeker extends Component {
       x = e.clientX - containerSpecs.left;
 
     let progressRate = x / containerSpecs.width;
+    if (progressRate >= 1) return;
 
     const { player, track, play, seek } = this.props;
 
-    if (!track.audio) play();
     seek(player.duration * progressRate);
   }
 
