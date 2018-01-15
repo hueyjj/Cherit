@@ -65,17 +65,21 @@ class Seeker extends Component {
   }
 
   onMouseMove(e) {
+    e.preventDefault();
     if (this.mouseDown) {
       this.onClick(e);
     }
   }
 
   onMouseDown(e) {
+    e.preventDefault();
+    this.container.focus();
     this.mouseDown = true;
     this.props.pause();
   }
 
   onMouseUp(e) {
+    this.container.focus();
     this.mouseDown = false;
     this.props.play();
   }
