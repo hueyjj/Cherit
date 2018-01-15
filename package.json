@@ -39,6 +39,7 @@
   "dependencies": {
     "babel-preset-stage-2": "^6.24.1",
     "musicmetadata": "^2.0.5",
+    "node-cmd": "^3.0.0",
     "react": "^15.6.2",
     "react-dom": "^15.4.2",
     "react-draggable": "^3.0.5",

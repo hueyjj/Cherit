@@ -1,10 +1,8 @@
-- Add volume control
 - Add youtube-dl capabilities
+    
+- Change minimize, maximize, close buttons
+
 - Add customize capabilities
-
-- BUG fix dragging seeker when out of bounds
-- BUG set new track, then seek to any where, will begin at the beginning. Should actually begin at where seeked. This has to do with metadata not loading in time before seeking to a time.
-
 - High cpu usage somewhere. Analyze and fix later
 
 - Smooth progress bar transition

@@ -6,6 +6,7 @@ import TrackListContainer from '../containers/TrackListContainer';
 import LibraryControllerContainer from '../containers/LibraryControllerContainer';
 import PlayerContainer from '../containers/PlayerContainer';
 import TrackImageContainer from '../containers/TrackImageContainer';
+import Youtube from "../components/Youtube";
 
 class Root extends Component {
   render() {
@@ -19,6 +20,9 @@ class Root extends Component {
           </div>
           <div className="wrapper-3">
             <PlayerContainer />
+          </div>
+          <div>
+            <Youtube />
           </div>
         </div>
       </div>

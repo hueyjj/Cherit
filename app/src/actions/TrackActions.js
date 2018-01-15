@@ -39,7 +39,6 @@ export const setTrackVolume = (volume) => (dispatch, getState) => {
   if (track.audio) {
     track.audio.volume = volume;
   }
-  console.log(volume);
   dispatch({
     type: types.TRACK_SET_VOLUME,
     payload: volume,

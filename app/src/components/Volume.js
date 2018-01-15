@@ -4,7 +4,6 @@ import "../styles/Volume.css";
 
 import {
   TRACK_DEFAULT_VOLUME,
-  TRACK_VOLUME_REDUCTION_RATE
 } from "../constants/TrackConstants";
 
 class Volume extends Component {
@@ -60,7 +59,10 @@ class Volume extends Component {
     this.progress = rate;
 
     const { setTrackVolume } = this.props;
-    setTrackVolume(rate * TRACK_VOLUME_REDUCTION_RATE);
+
+    // Change the formula for log function for audio if necessary
+    rate = Math.pow(rate, 3);
+    setTrackVolume(rate);
   }
 
   onMouseMove(e) {

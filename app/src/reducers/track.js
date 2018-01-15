@@ -4,7 +4,7 @@ import { randomize } from "../utils/utils";
 const initialState = {
   track: null,
   audio: null,
-  volume: types.TRACK_DEFAULT_VOLUME,
+  volume: Math.pow(types.TRACK_DEFAULT_VOLUME, 3),
   index: 0,
   image: null,
 
@@ -40,7 +40,7 @@ const track = (state = initialState, action) => {
 
     case types.TRACK_SHUFFLE_QUEUE: {
       let randomQ = randomize(state.copyQueue);
-      randomQ = randomQ[0] == state.index ? randomQ.slice(1) : randomQ ;
+      randomQ = randomQ[0] == state.index ? randomQ.slice(1) : randomQ;
       return {
         ...state,
         queue: randomQ,

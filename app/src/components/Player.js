@@ -17,10 +17,11 @@ class Player extends Component {
       shuffle,
       seek,
       nextTrack,
-      setTrackVolume,      
+      setTrackVolume,
       library,
       track,
       } = this.props;
+    const { duration, currentTime } = player;
 
     return (
       <div className="player-container">
@@ -32,6 +33,9 @@ class Player extends Component {
           pause={pause}
         />
         <div className="player-controllers">
+          <div>
+            {Math.floor(currentTime)} / {Math.floor(duration)}
+          </div>
           <button onClick={play}>Play</button>
           <button onClick={pause}>Pause</button>
           <button onClick={stop}>Stop</button>
