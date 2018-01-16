@@ -5,6 +5,8 @@ import * as types from "../constants/YoutubeConstants";
 
 import { base64ArrayBuffer } from "../utils/utils.github";
 
+export const YtRegExp = RegExp(/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/watch\?.+$/);
+
 export const download = (url) => {
   exec(
     `youtube-dl -o "./%(title)s.%(ext)s" -i --format m4a --embed-thumbnail --add-metadata ${url}`,

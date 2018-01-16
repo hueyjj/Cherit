@@ -4,8 +4,8 @@ import "../styles/Youtube.css";
 
 import YoutubeImage from "../components/YoutubeImage";
 import YoutubeInfo from "../components/YoutubeInfo";
-import * as yt from "../utils/utils.youtube";
 import { setYoutubeImage } from '../actions/YoutubeActions';
+import * as yt from "../utils/utils.youtube";
 
 class Youtube extends Component {
   constructor(props) {
@@ -30,8 +30,6 @@ class Youtube extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.visible);
-    console.log(this.container);
     if (!this.state.visible && this.container) {
       this.setState({ visible: true });
       this.container.focus();
@@ -43,14 +41,13 @@ class Youtube extends Component {
     if (27 == e.keyCode) {
       this.setState({ visible: false });
       this.props.hideYoutube();
-    } else if (this.input && RegExp(/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/watch\?.+$/).test(this.input.value)) {
+    } else if (this.input && yt.YtRegExp.test(this.input.value)) {
       await this.setState({ url: this.input.value });
       this.setYoutubeInfo();
     }
   }
 
   onKeyDown(e) {
-    console.log('hi');
   }
 
   async onSubmit(e) {
@@ -92,7 +89,7 @@ class Youtube extends Component {
   }
 
   render() {
-    const { youtube } = this.props;
+    const { youtube, hideYoutube } = this.props;
     const { shouldShow } = youtube;
 
     return shouldShow ?
@@ -101,11 +98,13 @@ class Youtube extends Component {
           className="youtube-container-background"
           tabIndex="0"
           ref={(input) => { this.container = input; }}
+          onClick={hideYoutube}
           onKeyDown={this.onKeyDown}
           onKeyUp={this.onKeyUp}
         >
           <div
             className="youtube-container"
+            onClick={(e) => { e.stopPropagation(); }} // Can stop EVERY children from sending their onClick back to youtube-container-background
           >
             <form
               onSubmit={this.onSubmit}
