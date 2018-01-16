@@ -36,15 +36,13 @@ class Youtube extends Component {
   }
 
   onKeyUp(e) {
-    console.log('up');
-    console.log(e);
-    console.log(e.keyCode);
-  }
-  onKeyDown(e) {
     // ESC key
     if (27 == e.keyCode) {
       this.props.hideYoutube();
     }
+  }
+  
+  onKeyDown(e) {
   }
 
   async onSubmit(e) {

@@ -1,16 +1,16 @@
 import request from "request";
-import cmd from "node-cmd";
+import { exec } from "child_process";
 
 import * as types from "../constants/YoutubeConstants";
 
 import { base64ArrayBuffer } from "../utils/utils.github";
 
 export const download = (url) => {
-  cmd.get(
+  exec(
     `youtube-dl -o "./%(title)s.%(ext)s" -i --format m4a --embed-thumbnail --add-metadata ${url}`,
-    (err, data, stderr) => {
+    (err, stdout, stderr) => {
       if (!err) {
-        console.log(data);
+        console.log(stdout);
       } else {
         console.warn('error', err);
       }
@@ -36,12 +36,12 @@ export const downloadImage = (url) => {
 
 export const fetchYoutubeInfo = (url) => {
   return new Promise((resolve, reject) => {
-    cmd.get(
+    exec(
       `youtube-dl --dump-json ${url}`,
-      (err, data, stderr) => {
+      (err, stdout, stderr) => {
         try {
           if (!err)
-            resolve(JSON.parse(data));
+            resolve(JSON.parse(stdout));
           else
             reject(types.YOUTUBE_FETCH_INFO_FAILED);
         } catch (e) {
@@ -58,12 +58,12 @@ export const fetchYoutubeInfo = (url) => {
 
 export const fetchImageUrl = (url) => {
   return new Promise((resolve, reject) => {
-    cmd.get(
+    exec(
       `youtube-dl --get-thumbnail ${url}`,
-      (err, data, stderr) => {
+      (err, stdout, stderr) => {
         if (!err) {
-          if (data.length > 0) {
-            resolve(data);
+          if (stdout.length > 0) {
+            resolve(stdout);
             return;
           }
         } else {
