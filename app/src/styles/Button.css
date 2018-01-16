@@ -3,11 +3,11 @@
   width: 50px;
 }
 
-.play-button:hover {
-  background-color: lightblue;
+.play-button:active {
+  background-color: red;
 }
 
-.play-svg-button {
+.play-svg {
   height: 100%;
   width: 100%;
   object-fit: contain;

@@ -12,6 +12,7 @@ class Youtube extends Component {
     super(props);
 
     this.state = {
+      visible: false,
       info: null,
       url: null,
       base64Image: null,
@@ -29,20 +30,27 @@ class Youtube extends Component {
   }
 
   componentDidUpdate() {
-    const { youtube } = this.props;
-    if (youtube.shouldShow) {
+    console.log(this.state.visible);
+    console.log(this.container);
+    if (!this.state.visible && this.container) {
+      this.setState({ visible: true });
       this.container.focus();
     }
   }
 
-  onKeyUp(e) {
+  async onKeyUp(e) {
     // ESC key
     if (27 == e.keyCode) {
+      this.setState({ visible: false });
       this.props.hideYoutube();
+    } else if (this.input && RegExp(/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/watch\?.+$/).test(this.input.value)) {
+      await this.setState({ url: this.input.value });
+      this.setYoutubeInfo();
     }
   }
 
   onKeyDown(e) {
+    console.log('hi');
   }
 
   async onSubmit(e) {
@@ -59,7 +67,6 @@ class Youtube extends Component {
   async setYoutubeInfo() {
     let info = await this.getYoutubeInfo();
     if (info) {
-      console.log(info);
       await this.setState({ info: info });
       this.setYoutubeImage();
       this.setYoutubeMetaInfo();
@@ -90,13 +97,15 @@ class Youtube extends Component {
 
     return shouldShow ?
       (
-        <div className="youtube-container-background">
+        <div
+          className="youtube-container-background"
+          tabIndex="0"
+          ref={(input) => { this.container = input; }}
+          onKeyDown={this.onKeyDown}
+          onKeyUp={this.onKeyUp}
+        >
           <div
             className="youtube-container"
-            tabIndex="0"
-            ref={(input) => { this.container = input; }}
-            onKeyDown={this.onKeyDown}
-            onKeyUp={this.onKeyUp}
           >
             <form
               onSubmit={this.onSubmit}
@@ -121,8 +130,7 @@ class Youtube extends Component {
       )
       :
       (
-        <div className="youtube-hide-container">
-        </div>
+        null
       );
   }
 }

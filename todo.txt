@@ -1,3 +1,5 @@
+- Fix crashing issue when show youtube > paste url > spam operations
+
 - Add youtube-dl capabilities
     - Add async, multi downloads
     - Progress tracker

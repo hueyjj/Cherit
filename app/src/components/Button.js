@@ -16,7 +16,7 @@ class Button extends Component {
         onClick={onClick}
       >
         <img
-          className={svgName + '-' + 'svg-button'}
+          className={svgName + '-' + 'svg'}
           src={svg} />
       </div>
     );
