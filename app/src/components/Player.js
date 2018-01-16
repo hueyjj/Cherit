@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import "../styles/Player.css";
 
+import PlaySvg from "../assets/play.svg";
+
+import Button from "../components/Button";
 import Seeker from "../components/Seeker";
 import Volume from "../components/Volume";
 
@@ -24,7 +27,9 @@ class Player extends Component {
       track,
       } = this.props;
     const { duration, currentTime } = player;
-
+    let s = {
+      backgroundImage: 'url(./src/assets/play.svg'
+    }
     return (
       <div className="player-container">
         <Seeker
@@ -38,7 +43,13 @@ class Player extends Component {
           <div>
             {Math.floor(currentTime)} / {Math.floor(duration)}
           </div>
-          <button onClick={play}>Play</button>
+          <Button
+            className="play-button"
+            svgName="play"
+            svg={PlaySvg}
+            onClick={play}
+          />
+
           <button onClick={pause}>Pause</button>
           <button onClick={stop}>Stop</button>
           <button onClick={togglePlayerLoop}>LoopTrack</button>
