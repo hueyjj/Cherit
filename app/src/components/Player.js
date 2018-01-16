@@ -17,6 +17,8 @@ class Player extends Component {
       shuffle,
       seek,
       nextTrack,
+      showYoutube,
+      hideYoutube,
       setTrackVolume,
       library,
       track,
@@ -43,6 +45,8 @@ class Player extends Component {
           <button onClick={togglePlayerQueueLoop}>Loop</button>
           <button onClick={shuffle}>Shuffle</button>
           <button onClick={nextTrack}>NextTrack</button>
+          <button onClick={showYoutube}>ShowYoutube</button>
+          <button onClick={hideYoutube}>HideYoutube</button>
           {library.trackList.length} tracks
           <Volume
             track={track}

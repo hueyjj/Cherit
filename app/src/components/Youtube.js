@@ -17,14 +17,34 @@ class Youtube extends Component {
       base64Image: null,
     }
 
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+
+    this.onKeyUp = this.onKeyUp.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+
     this.onSubmit = this.onSubmit.bind(this);
     this.getYoutubeInfo = this.getYoutubeInfo.bind(this);
     this.setYoutubeImage = this.setYoutubeImage.bind(this);
     this.setYoutubeMetaInfo = this.setYoutubeMetaInfo.bind(this);
   }
 
-  componentDidMount() {
-    this.input.value = "https://www.youtube.com/watch?v=3GyHt2jePAs";
+  componentDidUpdate() {
+    const { youtube } = this.props;
+    if (youtube.shouldShow) {
+      this.container.focus();
+    }
+  }
+
+  onKeyUp(e) {
+    console.log('up');
+    console.log(e);
+    console.log(e.keyCode);
+  }
+  onKeyDown(e) {
+    // ESC key
+    if (27 == e.keyCode) {
+      this.props.hideYoutube();
+    }
   }
 
   async onSubmit(e) {
@@ -68,29 +88,42 @@ class Youtube extends Component {
 
   render() {
     const { youtube } = this.props;
-    return (
-      <div>
-        Youtube
-        <form
-          onSubmit={this.onSubmit}
+    const { shouldShow } = youtube;
+
+    return shouldShow ?
+      (
+        <div
+          className="youtube-container"
+          tabIndex="0"
+          ref={(input) => { this.container = input; }}
+          onKeyDown={this.onKeyDown}
+          onKeyUp={this.onKeyUp}
         >
-          <input
-            ref={(input) => { this.input = input; }}
-            id="youtube-input"
-            placeholder="enter youtube url"
-            type="text"
-          />
-        </form>
-        <div>
-          <YoutubeImage
-            src={this.state.base64Image}
-          />
-          <YoutubeInfo
-            youtube={youtube}
-          />
+          <form
+            onSubmit={this.onSubmit}
+          >
+            <input
+              ref={(input) => { this.input = input; }}
+              id="youtube-input"
+              placeholder="enter youtube url"
+              type="text"
+            />
+          </form>
+          <div>
+            <YoutubeImage
+              src={this.state.base64Image}
+            />
+            <YoutubeInfo
+              youtube={youtube}
+            />
+          </div>
         </div>
-      </div>
-    );
+      )
+      :
+      (
+        <div className="youtube-hide-container">
+        </div>
+      );
   }
 }
 

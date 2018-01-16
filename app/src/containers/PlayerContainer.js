@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Player from "../components/Player";
+import { showYoutube, hideYoutube } from "../actions/YoutubeActions";
 import {
   play,
   stop,
@@ -42,6 +43,8 @@ const mapDispatchToProps = {
   shuffle,
   seek,
   nextTrack,
+  showYoutube,
+  hideYoutube,
   setTrackVolume,
 };
 

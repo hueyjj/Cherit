@@ -1,0 +1,10 @@
+.youtube-container {
+  position: fixed;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  padding-top: 80px;
+  padding-right: 100px;
+  padding-left: 100px;
+  background-color: rgba(0, 0, 0, 0.4);
+}

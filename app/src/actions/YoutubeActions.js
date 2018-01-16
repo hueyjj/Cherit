@@ -1,5 +1,13 @@
 import * as types from "../constants/YoutubeConstants";
 
+export const showYoutube = () => ({
+  type: types.YOUTUBE_SHOW,
+})
+
+export const hideYoutube = () => ({
+  type: types.YOUTUBE_HIDE,
+})
+
 export const setYoutubeImage = (image) => ({
   type: types.YOUTUBE_SET_IMAGE,
   payload: image,

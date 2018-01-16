@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import Youtube from '../components/Youtube';
 import {
   setYoutubeImage,
-  setYoutubeInfo
+  setYoutubeInfo,
+  showYoutube,
+  hideYoutube,
 } from "../actions/YoutubeActions";
 
 const YoutubeContainer = (props) => {
@@ -21,7 +23,10 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
+  setYoutubeImage,
   setYoutubeInfo,
+  showYoutube,
+  hideYoutube,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeContainer);
