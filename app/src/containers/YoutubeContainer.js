@@ -2,7 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Youtube from '../components/Youtube';
-import { setYoutubeImage } from "../actions/YoutubeActions";
+import {
+  setYoutubeImage,
+  setYoutubeInfo
+} from "../actions/YoutubeActions";
 
 const YoutubeContainer = (props) => {
   return (
@@ -18,7 +21,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  setYoutubeImage,
+  setYoutubeInfo,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeContainer);

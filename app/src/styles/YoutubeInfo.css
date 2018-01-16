@@ -1,0 +1,13 @@
+.youtube-info-container {
+
+}
+
+.youtube-title {
+
+}
+
+.youtube-desc {
+  height: 300px;
+  white-space: pre-line;
+  overflow-y: scroll;
+}

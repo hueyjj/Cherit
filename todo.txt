@@ -1,5 +1,6 @@
 - Add youtube-dl capabilities
-    
+
+- Hide anything that will increase cpu usage: player, progress bar, etc.
 - Change minimize, maximize, close buttons
 
 - Add customize capabilities

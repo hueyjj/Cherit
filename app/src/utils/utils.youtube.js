@@ -20,24 +20,40 @@ export const download = (url) => {
 
 export const downloadImage = (url) => {
   return new Promise((resolve, reject) => {
-    fetchImageUrl(url)
-      .then((imageUrl) => {
-        let req = require('request').defaults({ encoding: null });
+    let req = require('request').defaults({ encoding: null });
 
-        req.get(url, (error, response, body) => {
-          if (!error && response.statusCode == 200) {
-            let data = "data:" + response.headers["content-type"]
-              + ";base64," + base64ArrayBuffer(body);
-            resolve(data);
-          } else {
-            reject(types.YOUTUBE_DOWNLOAD_IMAGE_FAILED);
-          }
-        });
-      })
-      .catch((reason) => {
-        console.warn("downloadImage: " + reason);
-      });
-  });
+    req.get(url, (error, response, body) => {
+      if (!error && response.statusCode == 200) {
+        let data = "data:" + response.headers["content-type"]
+          + ";base64," + base64ArrayBuffer(body);
+        resolve(data);
+      } else {
+        reject(types.YOUTUBE_DOWNLOAD_IMAGE_FAILED);
+      }
+    });
+  })
+};
+
+export const fetchYoutubeInfo = (url) => {
+  return new Promise((resolve, reject) => {
+    cmd.get(
+      `youtube-dl --dump-json ${url}`,
+      (err, data, stderr) => {
+        try {
+          if (!err)
+            resolve(JSON.parse(data));
+          else
+            reject(types.YOUTUBE_FETCH_INFO_FAILED);
+        } catch (e) {
+          console.error(e);
+          reject(types.YOUTUBE_FETCH_INFO_SYNTAX_ERROR);
+        }
+      }
+    );
+  })
+    .catch((reason) => {
+      console.warn("fetchYoutubeInfo: " + reason);
+    });
 };
 
 export const fetchImageUrl = (url) => {
@@ -50,9 +66,10 @@ export const fetchImageUrl = (url) => {
             resolve(data);
             return;
           }
+        } else {
+          console.log("error", err);
+          reject(types.YOUTUBE_FETCH_IMAGE_URL_FAILED);
         }
-        console.log("error", err);
-        reject(types.YOUTUBE_FETCH_IMAGE_URL_FAILED);
       }
     );
   })
