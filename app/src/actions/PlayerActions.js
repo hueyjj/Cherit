@@ -34,7 +34,6 @@ export const createNewAudio = (src, volume, index) => (dispatch, getState) => {
   audio.src = src;
   audio.volume = volume;
   audio.index = index;
-
   audio.addEventListener("loadedmetadata", () => {
     dispatch(setPlayerDuration(audio.duration));
   });

@@ -1,8 +1,8 @@
 .track-image-container {
   display: block;
   border: 1px solid black;
-  height: 200px;
-  width: 400px;
+  height: 400px;
+  width: 500px;
 }
 
 .track-image {

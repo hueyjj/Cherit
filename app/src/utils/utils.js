@@ -1,8 +1,10 @@
 import { remote } from "electron";
-const { dialog } = remote;
+const { app, dialog } = remote;
 import mm from 'musicmetadata';
 import fs from 'fs';
 import path from "path";
+
+import * as types from "../constants/AppConstants";
 
 import {
   ERROR_LOAD_LIBRARY,
@@ -10,6 +12,18 @@ import {
   ERROR_BUILDING_FILE_METADATA,
   MUSIC_FORMAT,
 } from "../constants/LibraryConstants";
+
+export const getDownloadDir = () => {
+  return app.getPath("downloads");
+};
+
+export const getProjDataDir = () => {
+  return path.join(app.getPath("appData"), types.APP_NAME);
+};
+
+export const getAppData = () => {
+
+};
 
 export const getDirectories = (dir) => {
   return new Promise((resolve, reject) => {

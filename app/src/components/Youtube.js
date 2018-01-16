@@ -41,7 +41,7 @@ class Youtube extends Component {
       this.props.hideYoutube();
     }
   }
-  
+
   onKeyDown(e) {
   }
 
@@ -90,32 +90,34 @@ class Youtube extends Component {
 
     return shouldShow ?
       (
-        <div
-          className="youtube-container"
-          tabIndex="0"
-          ref={(input) => { this.container = input; }}
-          onKeyDown={this.onKeyDown}
-          onKeyUp={this.onKeyUp}
-        >
-          <form
-            onSubmit={this.onSubmit}
+        <div className="youtube-container-background">
+          <div
+            className="youtube-container"
+            tabIndex="0"
+            ref={(input) => { this.container = input; }}
+            onKeyDown={this.onKeyDown}
+            onKeyUp={this.onKeyUp}
           >
-            <input
-              ref={(input) => { this.input = input; }}
-              id="youtube-input"
-              placeholder="enter youtube url"
-              type="text"
-            />
-          </form>
-          <div>
-            <YoutubeImage
-              src={this.state.base64Image}
-            />
-            <YoutubeInfo
-              youtube={youtube}
-            />
+            <form
+              onSubmit={this.onSubmit}
+            >
+              <input
+                ref={(input) => { this.input = input; }}
+                id="youtube-input"
+                placeholder="enter youtube url"
+                type="text"
+              />
+            </form>
+            <div>
+              <YoutubeImage
+                src={this.state.base64Image}
+              />
+              <YoutubeInfo
+                youtube={youtube}
+              />
+            </div>
           </div>
-        </div>
+        </div >
       )
       :
       (
