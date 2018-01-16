@@ -1,4 +1,8 @@
 - Add youtube-dl capabilities
+    - Add async, multi downloads
+    - Progress tracker
+
+- SVG for players and such
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
 - Change minimize, maximize, close buttons
@@ -6,7 +10,6 @@
 - Add customize capabilities
 - High cpu usage somewhere. Analyze and fix later
 
-- Smooth progress bar transition
 - Website after project is done
 - README.md revamp
 - Release builds for windows and linux
