@@ -3,7 +3,7 @@ import request from "request";
 import path from "path";
 
 import * as types from "../constants/YoutubeConstants";
-
+import { APP_NAME } from "../constants/AppConstants";
 import { getDownloadDir } from "../utils/utils";
 import { base64ArrayBuffer } from "../utils/utils.github";
 
@@ -11,32 +11,21 @@ export const YtRegExp = RegExp(/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)
 
 export const download = async (url) => {
   const dlDir = await getDownloadDir();
-  const outputLoc = path.join(dlDir, "%(title)s.%(ext)s");
-  console.log(outputLoc);
-
-  // const ls = spawn('ls', ['-lh', '/usr']);
-
-  // ls.stdout.on('data', (data) => {
-  //   console.log(`stdout: ${data}`);
-  // });
-  
-  // ls.stderr.on('data', (data) => {
-  //   console.log(`stderr: ${data}`);
-  // });
-  
-  // ls.on('close', (code) => {
-  //   console.log(`child process exited with code ${code}`);
-  // });
+  const dlLoc = path.join(dlDir, APP_NAME, "%(title)s.%(ext)s");
+  console.log("raw path: " + dlLoc);
+  console.log("norm path: " + path.normalize(dlLoc));
 
   const youtubedl = spawn("youtube-dl", [
     // '--force-ipv4',
-    `-o ${outputLoc}`,
+    '-o',
+    dlLoc,
     '-i',
     '-f m4a',
     '--embed-thumbnail',
     '--add-metadata',
     `${url}`,
   ]);
+ 
   youtubedl.stdout.on('data', function (data) {
     console.log('stdout: ' + data.toString());
   });
@@ -44,7 +33,9 @@ export const download = async (url) => {
   youtubedl.stderr.on('data', function (data) {
     console.log('stderr: ' + data.toString());
   });
-
+  youtubedl.on('error', function(err) {
+    console.log('error: ' + err);
+  });
   youtubedl.on('exit', function (code) {
     console.log('youtube-dl process exited with code ' + code.toString());
   });
