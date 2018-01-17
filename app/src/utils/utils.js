@@ -19,12 +19,12 @@ export const getDownloadDir = () => {
     let path = await app.getPath("downloads");
     if (path)
       resolve(path);
-    else 
+    else
       reject("CANNOT FIND DOWNLOAD DIR");
   })
-  .catch((reason) => {
-    console.error("getDownloadDir: " + reason);
-  }); 
+    .catch((reason) => {
+      console.error("getDownloadDir: " + reason);
+    });
 };
 
 export const getProjDataDir = () => {

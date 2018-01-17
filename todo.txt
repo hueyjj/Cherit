@@ -1,5 +1,3 @@
-- Fix crashing issue when show youtube > paste url > spam operations
-
 - Add youtube-dl capabilities
     - Add async, multi downloads
     - Progress tracker
@@ -8,6 +6,7 @@
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
 - Change minimize, maximize, close buttons
+- Tray icon
 
 - Add customize capabilities
 - High cpu usage somewhere. Analyze and fix later

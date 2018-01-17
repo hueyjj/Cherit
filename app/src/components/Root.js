@@ -1,3 +1,4 @@
+import { ipcRenderer } from "electron";
 import React, { Component } from 'react';
 
 import '../styles/Root.css';
@@ -8,7 +9,13 @@ import PlayerContainer from '../containers/PlayerContainer';
 import TrackImageContainer from '../containers/TrackImageContainer';
 import YoutubeContainer from "../containers/YoutubeContainer";
 
+import { connectMenu } from "../utils/utils.menu";
+
 class Root extends Component {
+  componentDidMount() {  
+    connectMenu();
+  } 
+
   render() {
     return (
       <div className="root">

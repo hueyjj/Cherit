@@ -11,14 +11,12 @@ export const YtRegExp = RegExp(/^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.be)
 
 export const download = async (url) => {
   const dlDir = await getDownloadDir();
-  const dlLoc = path.join(dlDir, APP_NAME, "%(title)s.%(ext)s");
-  console.log("raw path: " + dlLoc);
-  console.log("norm path: " + path.normalize(dlLoc));
+  const loc = path.join(dlDir, APP_NAME, "%(title)s.%(ext)s");
 
   const youtubedl = spawn("youtube-dl", [
     // '--force-ipv4',
     '-o',
-    dlLoc,
+    loc,
     '-i',
     '-f m4a',
     '--embed-thumbnail',
@@ -29,7 +27,6 @@ export const download = async (url) => {
   youtubedl.stdout.on('data', function (data) {
     console.log('stdout: ' + data.toString());
   });
-
   youtubedl.stderr.on('data', function (data) {
     console.log('stderr: ' + data.toString());
   });

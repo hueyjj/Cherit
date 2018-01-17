@@ -1,11 +1,15 @@
-const electron = require('electron');
+const path = require("path");
+const { IPCMenu } = require(path.join(__dirname, "app", "src", "main-process", "Menu.js"));
+
+const { app, BrowserWindow, Menu, MenuItem } = require("electron");
+// const { Menu, MenuItem } = electron;
 
 if (process.env.NODE_ENV == 'dev')
   require('electron-reload')(__dirname)
 
-const app = electron.app;
+// const app = electron.app;
 
-const BrowserWindow = electron.BrowserWindow;
+// const BrowserWindow = electron.BrowserWindow;
 
 //const path = require('path');
 //const url = require('url');
@@ -21,6 +25,9 @@ function createWindow() {
   mainWindow.on('closed', function () {
     mainWindow = null
   })
+
+  // Custom menu
+  new IPCMenu(mainWindow);
 }
 
 app.on('ready', createWindow);
