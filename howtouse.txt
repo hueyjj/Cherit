@@ -1,6 +1,7 @@
 copy all files except for trash like node_modules into new project directory
 
-npm install     
+npm install  
+npm run webpack # starts the webpack server to monitor the files   
 npm run dev     # or someway to start webpack, which bundles our app and also auto updates for electron
 npm start       # or someway to start electron in the main directory (electron .)
 
