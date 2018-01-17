@@ -1,5 +1,6 @@
 import { remote } from "electron";
 const { app, dialog } = remote;
+
 import mm from 'musicmetadata';
 import fs from 'fs';
 import path from "path";
@@ -14,15 +15,20 @@ import {
 } from "../constants/LibraryConstants";
 
 export const getDownloadDir = () => {
-  return app.getPath("downloads");
+  return new Promise(async (resolve, reject) => {
+    let path = await app.getPath("downloads");
+    if (path)
+      resolve(path);
+    else 
+      reject("CANNOT FIND DOWNLOAD DIR");
+  })
+  .catch((reason) => {
+    console.error("getDownloadDir: " + reason);
+  }); 
 };
 
 export const getProjDataDir = () => {
   return path.join(app.getPath("appData"), types.APP_NAME);
-};
-
-export const getAppData = () => {
-
 };
 
 export const getDirectories = (dir) => {

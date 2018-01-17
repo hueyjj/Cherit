@@ -12,6 +12,8 @@ class Youtube extends Component {
     super(props);
 
     this.state = {
+      isFetchingImage: false,
+
       visible: false,
       info: null,
       url: null,
@@ -30,9 +32,14 @@ class Youtube extends Component {
   }
 
   componentDidUpdate() {
-    if (!this.state.visible && this.container) {
+    const { youtube } = this.props;
+    const { shouldShow } = this.props;
+
+    if (!this.state.visible && this.input) {
       this.setState({ visible: true });
-      this.container.focus();
+      this.input.focus();
+    } else if (!shouldShow) {
+      this.state.visible = false;
     }
   }
 
@@ -42,8 +49,10 @@ class Youtube extends Component {
       this.setState({ visible: false });
       this.props.hideYoutube();
     } else if (this.input && yt.YtRegExp.test(this.input.value)) {
-      await this.setState({ url: this.input.value });
-      this.setYoutubeInfo();
+      if (this.input.value != this.state.url) {
+        await this.setState({ url: this.input.value });
+        this.setYoutubeInfo();
+      }
     }
   }
 
@@ -53,7 +62,8 @@ class Youtube extends Component {
   async onSubmit(e) {
     e.preventDefault();
     await this.setState({ url: this.input.value });
-    this.setYoutubeInfo();
+    yt.download(this.state.url);
+    console.log('end of submit function');
   }
 
   async getYoutubeInfo() {
@@ -73,10 +83,17 @@ class Youtube extends Component {
 
   async setYoutubeImage() {
     let imageUrl = this.state.info.thumbnail;
+
+    if (this.state.isFetchingImage) return;
+
+    await this.setState({ isFetchingImage: true });
+    console.log(imageUrl);
     yt.downloadImage(imageUrl)
       .then((data) => {
         if (data) this.setState({ base64Image: data });
         else this.setState({ base64Image: null });
+
+        this.setState({ isFetchingImage: false });
       })
   }
 
