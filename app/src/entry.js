@@ -16,8 +16,12 @@ ReactDOM.render(
 );
 
 // Tests
+const os = require("os");
 //const dir = "C://users/jj/github//project-blue//music//";
-const dir = "C:/Users/JJ/Music/addedmusic_2017-11-20"
+const dir = os.platform() == "win32" ? 
+  "C:/Users/JJ/Music/addedmusic_2017-11-20"
+  : "/home/huey/github/project-blue/music/";
+
 let LibTest = new LibraryTest(store);
 LibTest.init(dir);
 LibTest.run();
