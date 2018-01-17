@@ -6,11 +6,14 @@ import Root from '../components/Root';
 const RootContainer = props => <Root {...props} />;
 
 const mapStateToProps = (state) => {
-  const { router } = state;
+  const { youtube } = state;
 
   return {
-  };
+    youtube,
+  }
 };
 
+const mapDispatchToProps = {
+};
 
-export default connect(mapStateToProps)(RootContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(RootContainer);

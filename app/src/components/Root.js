@@ -12,9 +12,9 @@ import YoutubeContainer from "../containers/YoutubeContainer";
 import { connectMenu } from "../utils/utils.menu";
 
 class Root extends Component {
-  componentDidMount() {  
+  componentDidMount() {
     connectMenu();
-  } 
+  }
 
   render() {
     return (
