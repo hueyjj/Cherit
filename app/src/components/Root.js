@@ -20,9 +20,8 @@ class Root extends Component {
     return (
       <div className="root">
         <WindowControlContainer />
-
+        <LibraryControllerContainer />
         <div className="wrapper-0">
-          <LibraryControllerContainer />
 
           <div className="wrapper-2">
             <TrackImageContainer />

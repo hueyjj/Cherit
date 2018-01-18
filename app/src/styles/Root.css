@@ -37,6 +37,8 @@ body {
 
 .root {
   min-width: 700px;
+  background-color: #24354A;  
+  color: #C7BAAB;
 }
 
 .wrapper-0 {
@@ -44,8 +46,10 @@ body {
   flex-direction: column;
   min-width: 700px;
   min-height: 400px;
-  width: 900px;
+  width: 100%;
   height: 500px;
+  max-width: 1000px;
+  padding-top: 25px;
 }
 
 .wrapper-1 {

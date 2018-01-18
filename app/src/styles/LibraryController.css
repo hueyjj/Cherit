@@ -1,0 +1,23 @@
+.library-controller {  
+  -webkit-app-region: no-drag;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;  
+  height: 30px;
+  padding-left: 10px;
+}
+
+.options {
+  -webkit-app-region: no-drag;
+  display: flex;
+  cursor: pointer;
+  width: 25px;
+  height: 30px;  
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.options g {
+  fill: white;
+}

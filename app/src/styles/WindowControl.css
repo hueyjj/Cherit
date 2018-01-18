@@ -7,7 +7,9 @@
   align-items: center;  
 }
 
-.window-title {
+.window-title-container {
+  display: flex;
+  flex-direction: row;
   position: absolute;
   left: 0px;
   top: 0px;

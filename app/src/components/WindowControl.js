@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import "../styles/WindowControl.css";
 
+import LibraryControllerContainer from "../containers/LibraryControllerContainer";
 import { minimize, unmaximize, maximize, close } from "../utils/utils.win";
 
 class WindowControl extends Component {
@@ -32,9 +33,8 @@ class WindowControl extends Component {
         className="window-control-container"
         ref={(input) => { this.container = input; }}
       >
-        <div
-          className="window-title">
-          Window title
+        <div className="window-title-container">
+          <span className="window-title">Project-blue</span>
         </div>
 
         <div
@@ -91,7 +91,7 @@ class WindowControl extends Component {
               width="11.5"
               height="1"
               x="1.5"
-              y="5.5"
+              y="6.5"
             />
           </svg>
         </div>
