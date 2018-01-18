@@ -1,27 +1,32 @@
 .window-control-container {
   -webkit-app-region: drag;
+  display: flex;
+  flex-direction: row-reverse;
   background-color: black;
   height: 30px;
+  align-items: center;  
 }
 
 .window-title {
-  float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  padding-left: 5px;
+  padding-top: 5px;
+  color: white; 
 }
 
 .window-buttons {
   -webkit-app-region: no-drag;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
   cursor: pointer;
-  float: right;
+  width: 25px;
+  height: 30px;  
+  justify-content: center;
+  align-items: center;
 }
 
 .window-min {
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
 }
 
 .window-min rect {
@@ -44,9 +49,6 @@
 }
 
 .window-close {
-  padding-top: 10px;
-  padding-right: 0px;
-  padding-left: 5px;
 }
 
 .window-close line {
