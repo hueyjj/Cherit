@@ -63,7 +63,6 @@ class Youtube extends Component {
     e.preventDefault();
     await this.setState({ url: this.input.value });
     yt.download(this.state.url);
-    console.log('end of submit function');
   }
 
   async getYoutubeInfo() {

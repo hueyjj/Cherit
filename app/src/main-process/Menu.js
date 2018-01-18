@@ -7,7 +7,7 @@ const items = [
     click: (win) => () => {
       win.webContents.send("youtube-dl");
     }
-  },
+  },  
 ]
 
 
@@ -15,7 +15,6 @@ class IPCMenu {
   constructor(win) {
     this.win = win;
     this.menu = new Menu();
-    this.menu.win = this.win;
     this._initMenu();
 
     Menu.setApplicationMenu(this.menu);

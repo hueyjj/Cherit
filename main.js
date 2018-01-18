@@ -9,7 +9,7 @@ if (process.env.NODE_ENV == 'dev')
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  mainWindow = new BrowserWindow({ width: 1000, height: 600, frame: false });
 
   mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 
@@ -19,6 +19,8 @@ function createWindow() {
   mainWindow.on('closed', function () {
     mainWindow = null
   })
+
+  mainWindow.setMenuBarVisibility(false);
 
   // Custom menu
   new IPCMenu(mainWindow);
