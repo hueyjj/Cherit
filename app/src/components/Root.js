@@ -8,6 +8,7 @@ import LibraryControllerContainer from '../containers/LibraryControllerContainer
 import PlayerContainer from '../containers/PlayerContainer';
 import TrackImageContainer from '../containers/TrackImageContainer';
 import YoutubeContainer from "../containers/YoutubeContainer";
+import WindowControlContainer from "../containers/WindowControlContainer";
 
 class Root extends Component {
   componentDidMount() {
@@ -18,8 +19,9 @@ class Root extends Component {
   render() {
     return (
       <div className="root">
-        <div className="wrapper-0">
+        <WindowControlContainer />
 
+        <div className="wrapper-0">
           <LibraryControllerContainer />
 
           <div className="wrapper-2">

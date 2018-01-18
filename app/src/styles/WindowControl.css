@@ -1,0 +1,58 @@
+.window-control-container {
+  -webkit-app-region: drag;
+  background-color: black;
+  height: 30px;
+}
+
+.window-title {
+  float: left;
+}
+
+.window-buttons {
+  -webkit-app-region: no-drag;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+  float: right;
+}
+
+.window-min {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.window-min rect {
+  stroke: rgba(255, 255, 255, 0.5);
+}
+
+.window-min:hover rect {
+  stroke: rgba(255, 255, 255, 1);
+}
+
+.window-max {
+}
+
+.window-max rect {
+  stroke: rgba(255, 255, 255, 0.5);
+}
+
+.window-max:hover rect {
+  stroke: rgba(255, 255, 255, 1);
+}
+
+.window-close {
+  padding-top: 10px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+
+.window-close line {
+  stroke: rgba(255, 255, 255, 0.5);
+}
+
+.window-close:hover line  {
+  stroke: rgba(255, 255, 255, 1);
+}
