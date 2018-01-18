@@ -1,6 +1,3 @@
-- Local shortcut keys
-    - Find a way to pass store to utils.menu.js's connectMenu
-
 - Change minimize, maximize, close buttons
 
 - Add youtube-dl capabilities
@@ -11,6 +8,8 @@
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
 - Tray icon
+
+- Optimize build size
 
 - Add customize capabilities
 - High cpu usage somewhere. Analyze and fix later
