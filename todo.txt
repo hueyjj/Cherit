@@ -1,3 +1,8 @@
+- Local shortcut keys
+    - Find a way to pass store to utils.menu.js's connectMenu
+
+- Change minimize, maximize, close buttons
+
 - Add youtube-dl capabilities
     - Add async, multi downloads
     - Progress tracker
@@ -5,7 +10,6 @@
 - SVG for players and such
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
-- Change minimize, maximize, close buttons
 - Tray icon
 
 - Add customize capabilities

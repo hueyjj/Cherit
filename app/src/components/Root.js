@@ -9,10 +9,9 @@ import PlayerContainer from '../containers/PlayerContainer';
 import TrackImageContainer from '../containers/TrackImageContainer';
 import YoutubeContainer from "../containers/YoutubeContainer";
 
-import { connectMenu } from "../utils/utils.menu";
-
 class Root extends Component {
   componentDidMount() {
+    const { connectMenu } = this.props;
     connectMenu();
   }
 
