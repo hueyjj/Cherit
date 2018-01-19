@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import "../styles/LibraryController.css";
 
+import Config from "../components/Config";
+
 class LibraryController extends Component {
   constructor() {
     super();
@@ -16,19 +18,19 @@ class LibraryController extends Component {
   }
 
   onOptClick(e) {
-    console.log("gear icon clicked");
+    const { config, hideMenu, showMenu } = this.props;
+
+    if (config.visible)
+      hideMenu();
+    else
+      showMenu();
   }
 
   render() {
-    const { loadLibrary } = this.props;
+    const { config, hideMenu } = this.props;
 
     return (
       <div className="library-controller">
-        <button
-          onClick={this.onLibClick}
-        >
-          load library
-        </button>
         <div
           className="options"
           onClick={this.onOptClick}
@@ -48,6 +50,11 @@ class LibraryController extends Component {
             </g>
           </svg>
         </div>
+
+        <Config
+          config={config}
+          hideMenu={hideMenu}
+        />
       </div >
     );
   }

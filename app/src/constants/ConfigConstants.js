@@ -1,0 +1,2 @@
+export const CONFIG_SHOW_MENU = "CONFIG_SHOW_MENU";
+export const CONFIG_HIDE_MENU = "CONFIG_HIDE_MENU";

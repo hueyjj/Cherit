@@ -1,10 +1,8 @@
-- Change minimize, maximize, close buttons
+- SVG for players and such
 
 - Add youtube-dl capabilities
     - Add async, multi downloads
     - Progress tracker
-
-- SVG for players and such
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
 - Tray icon
@@ -12,6 +10,8 @@
 - Optimize build size
 
 - Add customize capabilities
+    - White + pink https://www.youtube.com/watch?v=SbeTuBQaJJ8
+    - References colors
 - High cpu usage somewhere. Analyze and fix later
 
 - Website after project is done

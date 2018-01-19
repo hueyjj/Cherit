@@ -20,19 +20,21 @@ class Root extends Component {
     return (
       <div className="root">
         <WindowControlContainer />
-        <LibraryControllerContainer />
         <div className="wrapper-0">
+          <div className="wrapper-1">
+            <LibraryControllerContainer />
 
-          <div className="wrapper-2">
-            <TrackImageContainer />
-            <TrackListContainer />
+            <div className="wrapper-2">
+              <TrackImageContainer />
+              <TrackListContainer />
+            </div>
+
+            <div className="wrapper-3">
+              <PlayerContainer />
+            </div>
+
+            <YoutubeContainer />
           </div>
-
-          <div className="wrapper-3">
-            <PlayerContainer />
-          </div>
-
-          <YoutubeContainer />
         </div>
       </div>
     );

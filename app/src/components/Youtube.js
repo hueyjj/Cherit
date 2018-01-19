@@ -33,12 +33,14 @@ class Youtube extends Component {
 
   componentDidUpdate() {
     const { youtube } = this.props;
-    const { shouldShow } = this.props;
+    const { shouldShow } = youtube;
 
+    // Component's visible state keeps track if this is the first time (each click) this component was shown
     if (!this.state.visible && this.input) {
       this.setState({ visible: true });
       this.input.focus();
     } else if (!shouldShow) {
+      // Switch visibilty checker off when exiting pop up
       this.state.visible = false;
     }
   }
@@ -86,7 +88,6 @@ class Youtube extends Component {
     if (this.state.isFetchingImage) return;
 
     await this.setState({ isFetchingImage: true });
-    console.log(imageUrl);
     yt.downloadImage(imageUrl)
       .then((data) => {
         if (data) this.setState({ base64Image: data });

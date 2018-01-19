@@ -9,7 +9,13 @@ if (process.env.NODE_ENV == 'dev')
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 1000, height: 600, frame: false });
+  mainWindow = new BrowserWindow({ 
+    width: 1000, 
+    height: 600, 
+    frame: false,
+    minWidth: 700,
+    minHeight: 500,
+  });
 
   mainWindow.loadURL(`file://${__dirname}/app/index.html`)
 
