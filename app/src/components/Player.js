@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import "../styles/Player.css";
-
 import PlaySvg from "../assets/play.svg";
 
 import Button from "../components/Button";
@@ -43,28 +42,42 @@ class Player extends Component {
           <div>
             {Math.floor(currentTime)} / {Math.floor(duration)}
           </div>
-          <Button
-            className="play-button"
-            svgName="play"
-            svg={PlaySvg}
-            onClick={play}
-          />
 
-          <button onClick={pause}>Pause</button>
+          <div
+            className="player-button play-button"
+            onClick={play}
+          >
+            <svg
+              width="25"
+              height="25"
+              viewBox="0 0 700.000000 700.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g
+                transform="translate(0.000000,700.000000) scale(0.100000,-0.100000)"
+                stroke="none"
+              >
+                <path d="M590 3500 c0 -2288 3 -3350 10 -3350 6 0 882 503 1948 1119 1065 615 2367 1367 2892 1670 525 303 955 556 955 561 0 5 -648 384 -1440 841 -792 457 -2093 1209 -2892 1670 -799 462 -1457 839 -1463 839 -7 0 -10 -1048 -10 -3350z"></path>
+              </g>
+            </svg>
+          </div>
+
+          <button onClick={pause}>
+            Pause
+          <img src={PlaySvg} />
+          </button>
           <button onClick={stop}>Stop</button>
           <button onClick={togglePlayerLoop}>LoopTrack</button>
           <button onClick={togglePlayerQueueLoop}>Loop</button>
           <button onClick={shuffle}>Shuffle</button>
           <button onClick={nextTrack}>NextTrack</button>
-          <button onClick={showYoutube}>ShowYoutube</button>
-          <button onClick={hideYoutube}>HideYoutube</button>
           {library.trackList.length} tracks
           <Volume
             track={track}
             setTrackVolume={setTrackVolume}
           />
         </div>
-      </div>
+      </div >
     );
   }
 }

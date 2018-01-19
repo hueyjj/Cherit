@@ -8,6 +8,12 @@
   flex-direction: row;
 }
 
-button {
+.player-button g {
+  fill: lightblue;
+}
+
+.play-button {
+  background: transparent;
+  border: none;
   user-select: none;
 }

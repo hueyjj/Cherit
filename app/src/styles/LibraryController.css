@@ -17,6 +17,10 @@
   user-select: none;
 }
 
-.options g {
-  fill: white;
+.options path {
+  fill: rgba(255, 255, 255, 0.5);
+}
+
+.options:hover path {
+  fill: rgba(255, 255, 255, 1.0);
 }
