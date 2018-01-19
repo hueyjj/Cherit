@@ -17,3 +17,7 @@
 - Website after project is done
 - README.md revamp
 - Release builds for windows and linux
+
+- Adjust size of application's window when on different resolution...?
+    https://github.com/electron/electron/blob/master/docs/api/screen.md
+        - screen.getAllDisplays()
