@@ -64,7 +64,6 @@ class Player extends Component {
 
           <button onClick={pause}>
             Pause
-          <img src={PlaySvg} />
           </button>
           <button onClick={stop}>Stop</button>
           <button onClick={togglePlayerLoop}>LoopTrack</button>
