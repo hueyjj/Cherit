@@ -4,6 +4,13 @@
   list-style: none;
   white-space: nowrap;
   user-select: none;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.track-container::before {
+  position: absolute;
+  content: '';
 }
 
 .track {

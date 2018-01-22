@@ -11,6 +11,8 @@ import {
   popQueue,
 } from "../actions/TrackActions";
 
+import { setWindowTitle } from "../actions/AppActions";
+
 export const togglePlayerLoopAction = () => ({
   type: types.PLAYER_TOGGLE_LOOP
 })
@@ -64,6 +66,10 @@ export const play = () => (dispatch, getState) => {
     dispatch(jumpToTrack(index));
   else if (audio) // Continue playing
     audio.play();
+
+  let trackObj = getState().track.track;
+  if (trackObj)
+    dispatch(setWindowTitle(trackObj.title));
 };
 
 export const pause = () => (dispatch, getState) => {

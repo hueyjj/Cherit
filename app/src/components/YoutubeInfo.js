@@ -8,15 +8,16 @@ class YoutubeInfo extends Component {
   }
 
   render() {
-    const { youtube } = this.props;
-    const { info } = youtube;
+    const { info, visible } = this.props;
 
-    return (
-      <div className="youtube-info-container">
-        <span className="youtube-title">{info.title}</span>
-        <div className="youtube-desc">{info.desc}</div>
-      </div>
-    );
+    if (visible)
+      return (
+        <div className="youtube-info-container">
+          <span className="youtube-title">{info.title}</span>
+          <div className="youtsube-desc">{info.desc}</div>
+        </div>
+      );
+    return (null);
   }
 }
 

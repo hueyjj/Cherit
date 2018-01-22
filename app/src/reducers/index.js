@@ -5,6 +5,7 @@ import library from "../reducers/library";
 import track from "../reducers/track";
 import youtube from "../reducers/youtube";
 import config from "../reducers/config";
+import app from "../reducers/app";
 
 const rootReducer = combineReducers({
   player,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   track,
   youtube,
   config,
+  app,
 });
 
 export default rootReducer

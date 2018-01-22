@@ -6,9 +6,10 @@ import WindowControl from "../components/WindowControl";
 const WindowControlContainer = props => <WindowControl {...props} />;
 
 const mapStateToProps = (state) => {
-  const { } = state;
+  const { app } = state;
 
   return {
+    app,
   }
 };
 

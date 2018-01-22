@@ -27,14 +27,14 @@ class WindowControl extends Component {
   }
 
   render() {
-    const { } = this.props;
+    const { app } = this.props;
     return (
       <div
         className="window-control-container"
         ref={(input) => { this.container = input; }}
       >
         <div className="window-title-container">
-          <span className="window-title">Project-blue</span>
+          <span className="window-title">{app.title}</span>
         </div>
 
         <div

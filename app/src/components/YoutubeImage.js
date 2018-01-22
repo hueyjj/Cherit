@@ -10,11 +10,13 @@ class YoutubeImage extends Component {
   render() {
     const { src } = this.props;
 
-    return (
-      <div className="youtube-image-container">
-        <img className="youtube-image" src={src}></img>
-      </div>
-    );
+    if (src)
+      return (
+        <div className="youtube-image-container">
+          <img className="youtube-image" src={src}></img>
+        </div>
+      );
+    return (null);
   }
 }
 

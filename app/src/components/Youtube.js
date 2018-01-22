@@ -37,7 +37,12 @@ class Youtube extends Component {
 
     // Component's visible state keeps track if this is the first time (each click) this component was shown
     if (!this.state.visible && this.input) {
-      this.setState({ visible: true });
+      this.setState({
+        visible: true,
+        info: null,
+        url: null,
+        base64Image: null,
+      });
       this.input.focus();
     } else if (!shouldShow) {
       // Switch visibilty checker off when exiting pop up
@@ -107,7 +112,7 @@ class Youtube extends Component {
 
   render() {
     const { youtube, hideYoutube } = this.props;
-    const { shouldShow } = youtube;
+    const { shouldShow, info } = youtube;
 
     return shouldShow ?
       (
@@ -138,7 +143,8 @@ class Youtube extends Component {
                 src={this.state.base64Image}
               />
               <YoutubeInfo
-                youtube={youtube}
+                visible={this.state.visible ? true : false}
+                info={info}
               />
             </div>
           </div>
