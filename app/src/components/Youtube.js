@@ -15,6 +15,7 @@ class Youtube extends Component {
       isFetchingImage: false,
 
       visible: false,
+
       info: null,
       url: null,
       base64Image: null,
@@ -32,19 +33,21 @@ class Youtube extends Component {
   }
 
   componentDidUpdate() {
-    const { youtube } = this.props;
+    const { youtube, clearYoutube } = this.props;
     const { shouldShow } = youtube;
 
     // Component's visible state keeps track if this is the first time (each click) this component was shown
     if (!this.state.visible && this.input) {
       this.setState({
-        visible: true,
         info: null,
         url: null,
         base64Image: null,
-      });
+      })
+      clearYoutube();
+      this.state.visible = true;
       this.input.focus();
-    } else if (!shouldShow) {
+    }
+    else if (!shouldShow) {
       // Switch visibilty checker off when exiting pop up
       this.state.visible = false;
     }
@@ -138,12 +141,15 @@ class Youtube extends Component {
                 type="text"
               />
             </form>
-            <div>
+            <div className="youtube-image-info-wrapper">
+              {/* <div className="youtube-title-container">
+                <span className="youtube-title">{info.title}</span>
+              </div> */}
+
               <YoutubeImage
                 src={this.state.base64Image}
               />
               <YoutubeInfo
-                visible={this.state.visible ? true : false}
                 info={info}
               />
             </div>

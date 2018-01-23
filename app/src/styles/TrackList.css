@@ -7,14 +7,15 @@
 } 
 
 .track-list-container::-webkit-scrollbar { 
-  width: 7px;
+  width: 8px;
   height: 5px;
   padding: 0;
   margin: 0;
+  display: none;
 }
 
 .track-list-container::-webkit-scrollbar:vertical { 
-  display: block;
+  display: none;
 }
 
 .track-list-container::-webkit-scrollbar-track {
@@ -23,7 +24,11 @@
 .track-list-container::-webkit-scrollbar-thumb {
 }
 
+.track-list-container:hover::-webkit-scrollbar:vertical {
+  display: block;
+}
 .track-list-container:hover::-webkit-scrollbar-thumb {
+
   background-color: rgba(255, 255, 255, 0.2);
 }
 

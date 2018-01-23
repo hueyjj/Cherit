@@ -7,6 +7,7 @@ import {
   setYoutubeInfo,
   showYoutube,
   hideYoutube,
+  clearYoutube,
 } from "../actions/YoutubeActions";
 
 const YoutubeContainer = (props) => {
@@ -27,6 +28,7 @@ const mapDispatchToProps = {
   setYoutubeInfo,
   showYoutube,
   hideYoutube,
+  clearYoutube,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(YoutubeContainer);

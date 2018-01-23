@@ -6,3 +6,4 @@ export const YOUTUBE_SET_IMAGE = "YOUTUBE_SET_IMAGE";
 export const YOUTUBE_SET_INFO = "YOUTUBE_SET_INFO";
 export const YOUTUBE_SHOW = "YOUTUBE_SHOW";
 export const YOUTUBE_HIDE = "YOUTUBE_HIDE";
+export const YOUTUBE_CLEAR = "YOUTUBE_CLEAR";

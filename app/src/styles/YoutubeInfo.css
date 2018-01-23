@@ -1,5 +1,5 @@
 .youtube-info-container {
-
+  padding: 5px;
 }
 
 .youtube-title {
@@ -7,7 +7,6 @@
 }
 
 .youtube-desc {
-  height: 300px;
+  /* height: 300px; */
   white-space: pre-line;
-  overflow-y: scroll;
 }

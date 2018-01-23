@@ -20,3 +20,7 @@ export const setYoutubeInfo = ({ title, desc, }) => ({
     desc,
   }
 });
+
+export const clearYoutube = () => ({
+  type: types.YOUTUBE_CLEAR,
+})

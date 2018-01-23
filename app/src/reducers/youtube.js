@@ -42,6 +42,14 @@ const youtube = (state = initialState, action) => {
       };
     }
 
+    case types.YOUTUBE_CLEAR: {
+      return {
+        ...state,
+        info: null,
+        image: null,
+      };
+    }
+
     default:
       return state;
   }

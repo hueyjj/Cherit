@@ -1,6 +1,8 @@
 - SVG for players and such
 
 - Add youtube-dl capabilities
+    - Add download to library
+    - Save download somewhere
     - Add async, multi downloads
     - Progress tracker
 
