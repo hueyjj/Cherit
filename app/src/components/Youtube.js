@@ -51,6 +51,12 @@ class Youtube extends Component {
       // Switch visibilty checker off when exiting pop up
       this.state.visible = false;
     }
+
+    if (this.state.url && this.state.info && this.state.base64Image) {
+      this.ytContainer.classList.add("youtube-container-active");
+    } else {
+      this.ytContainer.classList.remove("youtube-container-active");
+    }
   }
 
   async onKeyUp(e) {
@@ -129,6 +135,7 @@ class Youtube extends Component {
         >
           <div
             className="youtube-container"
+            ref={(input) => { this.ytContainer = input; }}
             onClick={(e) => { e.stopPropagation(); }} // Can stop EVERY children from sending their onClick back to youtube-container-background
           >
             <form
@@ -141,18 +148,20 @@ class Youtube extends Component {
                 type="text"
               />
             </form>
-            <div className="youtube-image-info-wrapper">
-              {/* <div className="youtube-title-container">
-                <span className="youtube-title">{info.title}</span>
-              </div> */}
 
-              <YoutubeImage
-                src={this.state.base64Image}
-              />
-              <YoutubeInfo
-                info={info}
-              />
-            </div>
+            {info ?
+              (<div className="youtube-title-container">
+                <span className="youtube-title">{info ? info.title : ""}</span>
+              </div>)
+              : (null)
+            }
+
+            <YoutubeImage
+              src={this.state.base64Image}
+            />
+            <YoutubeInfo
+              info={info}
+            />
           </div>
         </div >
       )

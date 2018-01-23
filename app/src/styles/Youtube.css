@@ -13,11 +13,15 @@
   position: relative;
   z-index: 2;
   left: 25%;
-  top: 10%;  
+  top: 5%;  
   width: 50%;
-  max-height: 80%;  
+  max-height: 100%;  
   overflow: hidden;
   background-color: white;    
+}
+
+.youtube-container-active {
+  height: 90%;
 }
 
 #youtube-input {
@@ -28,5 +32,6 @@
   padding-left: 10px;
 } 
 
-.youtube-image-info-wrapper {
+.youtube-title {
+  padding-left: 5px;
 }
