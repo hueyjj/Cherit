@@ -168,20 +168,24 @@ export const timeFunction = (fn, ...theArgs) => {
   return fn.name + "completed in " + (t1 - t0) + " ms.";
 };
 
+export const pad = (time) => {
+  return time > 9 ? time : "0" + time;
+}
+
 /*  Takes two times in seconds and converts them to hh:mm:ss format
 */
 export const toTimeFormat = (time1, time2) => {
   if (time1 == 0 && time2 == 0) return;
 
   let t1 = new Date(1969, 1, 1, 0, 0, time1, 0);
-  let hr1 = t1.getHours();
-  let min1 = t1.getMinutes();
-  let sec1 = t1.getSeconds();
+  let hr1 = pad(t1.getHours());
+  let min1 = pad(t1.getMinutes());
+  let sec1 = pad(t1.getSeconds());
 
   let t2 = new Date(1969, 1, 1, 0, 0, time2, 0);
-  let hr2 = t2.getHours();
-  let min2 = t2.getMinutes();
-  let sec2 = t2.getSeconds();
+  let hr2 = pad(t2.getHours());
+  let min2 = pad(t2.getMinutes());
+  let sec2 = pad(t2.getSeconds());
 
   if (hr2 > 0) {
     return `${hr1}:${min1}:${sec1} / ${hr2}:${min2}:${sec2}`

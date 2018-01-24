@@ -37,9 +37,9 @@ class Track extends Component {
     const { audio } = track;
 
     if (audio && audio.index == index)
-      return { background: 'lightgreen' };
+      return { background: '#243577' };
 
-    return track.index == index ? { background: 'lightblue' } : {};
+    return track.index == index ? { background: 'rgba(255, 255,255, 0.3)' } : {};
   }
 
   render() {

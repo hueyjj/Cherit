@@ -1,19 +1,11 @@
 .player-container {
   display: flex;
   flex-direction: column;
+  min-height: 50px;
 }
 
 .player-controllers {
   display: flex;
   flex-direction: row;
-}
-
-.player-button g {
-  fill: lightblue;
-}
-
-.play-button {
-  background: transparent;
-  border: none;
-  user-select: none;
+  justify-content: center;
 }

@@ -6,7 +6,6 @@
     - Add async, multi downloads
     - Progress tracker
 
-- Background be a blurry image of the track image
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
 - Tray icon
@@ -27,3 +26,4 @@
 - Adjust size of application's window when on different resolution...?
     https://github.com/electron/electron/blob/master/docs/api/screen.md
         - screen.getAllDisplays()
+- Background be a blurry image of the track image

@@ -20,7 +20,7 @@
   width: 100%;
   bottom: 0px;
   left: 0px;
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.5);
   user-select: none;
   /* transition: all 0.1s ease; */
   transform: scaleX(0);
@@ -29,5 +29,6 @@
 }
 
 .seeker-time {
-  
+  position: absolute;
+  left: 0;
 }

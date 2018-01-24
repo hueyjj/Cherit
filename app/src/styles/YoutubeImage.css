@@ -2,6 +2,7 @@
   display: block;
   border: 1px solid black;
   height: 45%;
+  user-select: none;
 }
 
 .youtube-image {

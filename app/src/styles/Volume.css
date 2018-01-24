@@ -14,7 +14,7 @@
 .volume-progress-bar {
   height: 10px; 
   width: 100%;
-  background-color: red;
+  background-color: #C7BAAB;
   /* transition: all 0.1s ease; */
   transform: scaleX(0);
   transform-origin: 0 0;
