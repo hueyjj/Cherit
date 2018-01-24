@@ -27,7 +27,7 @@ class Seeker extends Component {
   componentWillMount() {
     let mouseUpFn = ((e) => {
       if (this.state.mouseDown) {
-        this.setState({mouseDown: false});
+        this.setState({ mouseDown: false });
         this.onMouseUp(e);
       }
     }).bind(this);
@@ -76,22 +76,22 @@ class Seeker extends Component {
   onMouseDown(e) {
     e.preventDefault();
     this.container.focus();
-    this.setState({mouseDown: true});
+    this.setState({ mouseDown: true });
     this.props.pause();
   }
 
   onMouseUp(e) {
     this.container.focus();
-    this.setState({mouseDOiwn: false});
+    this.setState({ mouseDOiwn: false });
     this.props.play();
   }
 
   onMouseEnter(e) {
-    this.setState({mouseLeave: false});
+    this.setState({ mouseLeave: false });
   }
 
   onMouseLeave(e) {
-    this.setState({mouseLeave: true});
+    this.setState({ mouseLeave: true });
   }
 
   render() {

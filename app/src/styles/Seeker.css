@@ -2,9 +2,10 @@
   position: relative;
   background: rgba(144, 144, 144,.1);
   width: 100%;
+  top: -20px;
   /* height: 5px; */
   cursor: pointer;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   user-select: none; /* Apparently, there can be "invisible" highlighting which somehow makes the dragging thinks the mouse is still down */
 }
 
@@ -25,4 +26,8 @@
   transform: scaleX(0);
   transform-origin: 0 0;
   pointer-events: none;
+}
+
+.seeker-time {
+  
 }

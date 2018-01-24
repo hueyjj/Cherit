@@ -7,6 +7,8 @@ import Button from "../components/Button";
 import Seeker from "../components/Seeker";
 import Volume from "../components/Volume";
 
+import { toTimeFormat } from "../utils/utils";
+
 class Player extends Component {
   render() {
     const {
@@ -25,10 +27,8 @@ class Player extends Component {
       library,
       track,
       } = this.props;
-    const { duration, currentTime } = player;
-    let s = {
-      backgroundImage: 'url(./src/assets/play.svg'
-    }
+    const { currentTime, duration } = player;
+
     return (
       <div className="player-container">
         <Seeker
@@ -38,10 +38,10 @@ class Player extends Component {
           play={play}
           pause={pause}
         />
+        <div className="seeker-time">
+          {toTimeFormat(currentTime, duration)}
+        </div>
         <div className="player-controllers">
-          <div>
-            {Math.floor(currentTime)} / {Math.floor(duration)}
-          </div>
 
           <div
             className="player-button play-button"
