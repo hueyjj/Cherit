@@ -30,8 +30,8 @@ body {
 }
 
 .wrapper-1 {
-  display: block;
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: column;
   min-width: 700px;
   min-height: 400px;
   margin-left: 25px;
@@ -47,7 +47,9 @@ body {
 }
 
 .wrapper-3 {
-
+  position: relative;
+  top: -45px;
+  margin-top: auto;
 }
 
 
