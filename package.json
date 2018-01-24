@@ -22,8 +22,8 @@
       "icon": ""
     }
   },
-  "repository": "",
-  "license": "",
+  "repository": "https://github.com/hueyjj/project-blue",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
