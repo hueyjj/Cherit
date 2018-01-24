@@ -1,9 +1,18 @@
+- Finish tray icon and menu
+
+- Test linux
+
+- Create Website
+
+- Do readme and clean up some stuff for public
+
+- Get some release builds out
+
 - Add youtube-dl capabilities
     - Add download to library
     - Save download somewhere
     - Add async, multi downloads
     - Progress tracker
-
 
 - Hide anything that will increase cpu usage: player, progress bar, etc.
 - Tray icon
