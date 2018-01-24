@@ -14,6 +14,7 @@ class Config extends Component {
 
     this.onKeyUp = this.onKeyUp.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.libClick = this.libClick.bind(this);
   }
 
   componentDidUpdate() {
@@ -40,6 +41,11 @@ class Config extends Component {
   onKeyDown(e) {
   }
 
+  libClick(e) {
+    const { loadLibrary } = this.props;
+    loadLibrary(null);
+  }
+
   render() {
     const { config, hideMenu } = this.props;
 
@@ -57,16 +63,12 @@ class Config extends Component {
             className="config-container"
             onClick={(e) => { e.stopPropagation(); }} // Can stop EVERY children from sending their onClick back to youtube-container-background
           >
-            <form
-              onSubmit={this.onSubmit}
+            <div
+              className="load-library-container"
+              onClick={this.libClick}
             >
-              <input
-                ref={(input) => { this.input = input; }}
-                id="config-input"
-                placeholder="enter text"
-                type="text"
-              />
-            </form>
+            Load Library
+            </div>
           </div>
         </div >
       )

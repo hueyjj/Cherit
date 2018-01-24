@@ -5,14 +5,22 @@ import { applyMiddleware, createStore } from 'redux';
 import rootReducer from '../reducers';
 
 export default function configureStore(initialState) {
-  return createStore(
-    rootReducer,
-    initialState,
-    applyMiddleware(
-      ReduxThunk,
-      createLogger({
-        collapsed: true,
-      }),
-    ),
-  );
+  return process.env.NODE_ENV == 'dev' ?
+    createStore(
+      rootReducer,
+      initialState,
+      applyMiddleware(
+        ReduxThunk,
+        createLogger({
+          collapsed: true,
+        }),
+      ),
+    )
+    : createStore(
+      rootReducer,
+      initialState,
+      applyMiddleware(
+        ReduxThunk,
+      ),
+    );
 }

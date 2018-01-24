@@ -21,3 +21,18 @@
   margin-left: 100px; */
   background-color: rgb(69, 76, 78);
 }
+
+.load-library-container {
+  background: rgba(199, 186, 171, 1);  
+  color: #24354A;
+  text-align: center;
+  padding: 5px;  
+  height: 30px;
+  font-size: 24px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.load-library-container:active {
+  background: rgba(199, 186, 171, 0.5);  
+}

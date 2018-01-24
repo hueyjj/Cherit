@@ -8,13 +8,7 @@ class LibraryController extends Component {
   constructor() {
     super();
 
-    this.onLibClick = this.onLibClick.bind(this);
     this.onOptClick = this.onOptClick.bind(this);
-  }
-
-  onLibClick() {
-    const { loadLibrary } = this.props;
-    loadLibrary(null);
   }
 
   onOptClick(e) {
@@ -27,7 +21,7 @@ class LibraryController extends Component {
   }
 
   render() {
-    const { config, hideMenu } = this.props;
+    const { config, hideMenu, loadLibrary } = this.props;
 
     return (
       <div className="library-controller">
@@ -54,6 +48,7 @@ class LibraryController extends Component {
         <Config
           config={config}
           hideMenu={hideMenu}
+          loadLibrary={loadLibrary}
         />
       </div >
     );

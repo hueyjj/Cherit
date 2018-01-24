@@ -15,13 +15,15 @@ ReactDOM.render(
   , document.getElementById('root')
 );
 
-// Tests
-const os = require("os");
-//const dir = "C://users/jj/github//project-blue//music//";
-const dir = os.platform() == "win32" ? 
-  "C:/Users/JJ/Music/addedmusic_2017-11-20"
-  : "/home/huey/github/project-blue/music/";
+if (process.env.NODE_ENV == 'dev') {
+  // Tests
+  const os = require("os");
+  //const dir = "C://users/jj/github//project-blue//music//";
+  const dir = os.platform() == "win32" ?
+    "C:/Users/JJ/Music/addedmusic_2017-11-20"
+    : "/home/huey/github/project-blue/music/";
 
-let LibTest = new LibraryTest(store);
-LibTest.init(dir);
-LibTest.run();
+  let LibTest = new LibraryTest(store);
+  LibTest.init(dir);
+  LibTest.run();
+}
