@@ -11,7 +11,7 @@ let mainWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({
     title: "Project Blue",
-    icon: process.platform == "win32" ? path.join(__dirname, "app", "src", "assets", "orange.ico") : "",
+    icon: process.platform == "win32" ? path.join(__dirname, "app", "src", "assets", "triangle.ico") : "",
     width: 800,
     height: 500,
     frame: false,
