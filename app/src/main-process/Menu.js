@@ -35,7 +35,7 @@ class TrayMenu {
   }
 
   _initMenu() {
-    let appIcon = new Tray(path.join(__dirname, "..", "assets", "orange.ico"));
+    let appIcon = new Tray(path.join(__dirname, "..", "assets", "triangle.ico"));
     const contextMenu = Menu.buildFromTemplate([
       { label: 'Exit', type: 'normal', click: () => { this.win.close(); } },
     ])
