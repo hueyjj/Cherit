@@ -1,7 +1,7 @@
 {
   "name": "Cherit",
   "version": "0.1.0",
-  "description": "Customizable music application, supports downloading music from Youtube",
+  "description": "A customizable music application, supports downloading music from Youtube",
   "main": "main.js",
   "scripts": {
     "start": "set NODE_ENV=prod&&electron .",
@@ -18,8 +18,8 @@
     "appId": "Cherit",
     "electronVersion": "1.7.9",
     "win": {
-      "target": "portable",
-      "icon": ""
+      "target": "msi",
+      "icon": "app/src/assets/triangle.ico"
     }
   },
   "repository": "https://github.com/hueyjj/project-blue",
@@ -30,7 +30,7 @@
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.26.1",
     "electron": "^1.8.1",
-    "electron-builder": "^19.52.1",
+    "electron-builder": "^19.55.2",
     "electron-reload": "^1.1.0",
     "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.9.0",
