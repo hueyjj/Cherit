@@ -22,7 +22,7 @@
       "icon": "app/src/assets/triangle.ico"
     }
   },
-  "repository": "https://github.com/hueyjj/project-blue",
+  "repository": "https://github.com/hueyjj/Cherit",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
