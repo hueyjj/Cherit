@@ -1,4 +1,5 @@
-const { ipcMain, Menu, MenuItem } = require("electron");
+const path = require("path");
+const { ipcMain, Menu, MenuItem, Tray } = require("electron");
 
 const items = [
   {
@@ -7,9 +8,8 @@ const items = [
     click: (win) => () => {
       win.webContents.send("youtube-dl");
     }
-  },  
+  },
 ]
-
 
 class IPCMenu {
   constructor(win) {
@@ -28,7 +28,25 @@ class IPCMenu {
   }
 }
 
+class TrayMenu {
+  constructor(win) {
+    this.win = win;
+    this.__appIcon = this._initMenu();
+  }
+
+  _initMenu() {
+    let appIcon = new Tray(path.join(__dirname, "..", "assets", "orange.ico"));
+    const contextMenu = Menu.buildFromTemplate([
+      { label: 'Exit', type: 'normal', click: () => { this.win.close(); } },
+    ])
+    appIcon.setContextMenu(contextMenu);
+
+    return appIcon;
+  }
+}
+
 if (typeof module !== "undefined")
   module.exports = {
     IPCMenu,
+    TrayMenu,
   };

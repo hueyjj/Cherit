@@ -1,7 +1,7 @@
 const path = require("path");
-const { IPCMenu } = require(path.join(__dirname, "app", "src", "main-process", "Menu.js"));
+const { IPCMenu, TrayMenu } = require(path.join(__dirname, "app", "src", "main-process", "Menu.js"));
 
-const { app, BrowserWindow, Menu, MenuItem, Tray } = require("electron");
+const { app, BrowserWindow, Menu, MenuItem } = require("electron");
 
 if (process.env.NODE_ENV == 'dev')
   require('electron-reload')(__dirname)
@@ -9,16 +9,6 @@ if (process.env.NODE_ENV == 'dev')
 let mainWindow;
 
 function createWindow() {
-
-  // TODO move tray stuff to a different file and into the renderer process
-  appIcon = new Tray(path.join(__dirname, "app", "src", "assets", "orange.ico") )
-  const contextMenu = Menu.buildFromTemplate([
-    {label: 'Item1', type: 'normal'},
-    {label: 'Exit', type: 'normal'},
-  ])
-  // Call this again for Linux 
-  appIcon.setContextMenu(contextMenu);
-
   mainWindow = new BrowserWindow({
     title: "Project Blue",
     icon: process.platform == "win32" ? path.join(__dirname, "app", "src", "assets", "orange.ico") : "",
@@ -42,6 +32,9 @@ function createWindow() {
 
   // Custom menu
   new IPCMenu(mainWindow);
+
+  // Tray menu
+  new TrayMenu(mainWindow);
 }
 
 app.on('ready', createWindow);
