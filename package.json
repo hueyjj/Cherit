@@ -1,7 +1,7 @@
 {
-  "name": "project-blue",
+  "name": "Cherit",
   "version": "0.1.0",
-  "description": "music app",
+  "description": "Customizable music application, supports downloading music from Youtube",
   "main": "main.js",
   "scripts": {
     "start": "set NODE_ENV=prod&&electron .",
@@ -15,7 +15,7 @@
   },
   "author": "Jasper Jeng",
   "build": {
-    "appId": "project-blue",
+    "appId": "Cherit",
     "electronVersion": "1.7.9",
     "win": {
       "target": "portable",
