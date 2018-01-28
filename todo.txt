@@ -1,6 +1,9 @@
-- Test linux
-
+- Refactor EVERYTHING
+- Improve and clean up build system
+- Add more to README
 - Create Website
+
+- Test linux
 
 - Do readme and clean up some stuff for public
 

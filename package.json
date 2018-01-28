@@ -1,5 +1,5 @@
 {
-  "name": "Cherit",
+  "name": "Nimblefrost",
   "version": "0.1.0",
   "description": "A customizable music application, supports downloading music from Youtube",
   "main": "main.js",
@@ -15,14 +15,14 @@
   },
   "author": "Jasper Jeng",
   "build": {
-    "appId": "Cherit",
+    "appId": "Nimblefrost",
     "electronVersion": "1.7.9",
     "win": {
       "target": "msi",
       "icon": "app/src/assets/triangle.ico"
     }
   },
-  "repository": "https://github.com/hueyjj/Cherit",
+  "repository": "https://github.com/hueyjj/Nimblefrost",
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.23.1",
